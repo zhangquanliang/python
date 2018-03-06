@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>览众资蛛侠</title><!--<base href="/">--><base href="."><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="static/simple.css" rel="stylesheet">
+  <style>.active[_ngcontent-c0]{background-color:#ccc}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+<script type="text/javascript" src="static/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="static/search_tag.js"></script>
+    <LINK href="static/search_tag.css" type=text/css rel=stylesheet>
+
+<script type="text/javascript">
+	function query() {
+		acc_number = document.getElementById("acc_number").value
+		acc_traded_date_s = document.getElementById("acc_traded_date_s").value
+        acc_traded_date_e = document.getElementById("acc_traded_date_e").value
+        bank_type = document.getElementById("bank_type").value
+
+        location.href = "/?bank_type=" + bank_type + "&acc_number=" + acc_number + "&acc_traded_date_s=" + acc_traded_date_s + "&acc_traded_date_e=" + acc_traded_date_e
+	}
+
+	function selectAll(checked){
+		$('.data-check').prop("checked",true)
+	}
+
+	function export_certificate(){
+	    if($('.data-check:checked').length == 0){
+	        alert("请选择要导出的凭证！");
+	        return
+	    }
+		downloadForm.action = "/download?exp_type=certificate"
+		downloadForm.submit()
+	}
+
+	function export_flow(){
+	    acc_number = document.getElementById("acc_number").value
+		acc_traded_date_s = document.getElementById("acc_traded_date_s").value
+        acc_traded_date_e = document.getElementById("acc_traded_date_e").value
+
+        url = "/download?exp_type=flow&acc_number=" + acc_number + "&acc_traded_date_s=" + acc_traded_date_s + "&acc_traded_date_e=" + acc_traded_date_e
+        window.open(url)
+	}
+
+	function reload(bank_type){
+	    location.href = "/?bank_type=" + bank_type
+	}
+
+</script>
+</head><body class="hold-transition skin-blue sidebar-mini"><app-root _nghost-c0="" ng-version="4.4.3"><header _ngcontent-c0="" class="main-header">
+
+  <a _ngcontent-c0="" class="logo">
+    <span _ngcontent-c0="" class="logo-lg">览众资蛛侠</span>
+  </a>
+
+  <nav _ngcontent-c0="" class="navbar navbar-static-top">
+
+    <div _ngcontent-c0="" class="navbar-custom-menu">
+    </div>
+  </nav>
+</header>
+<div _ngcontent-c0="" class="container-fluid" style="margin-top:20px;">
+  <div _ngcontent-c0="" class="row">
+    <div _ngcontent-c0="" class="col col-lg-3">
+      <div _ngcontent-c0="" class="box box-primary">
+        <div _ngcontent-c0="" class="box-header with-border">
+          <h3 _ngcontent-c0="" class="box-title">账号列表</h3>
+          <br _ngcontent-c0="">
+          <br _ngcontent-c0="">
+            请选择银行：
+            <select _ngcontent-c0="" name="bank_type" id="bank_type" onchange="reload(this.value)" class="ng-untouched ng-pristine ng-valid">
+                <option _ngcontent-c0="" value="CMBE">招商EBank</option>
+                <option _ngcontent-c0="" value="CMBU">招商UBank</option>
+            </select>
+        <br _ngcontent-c0="">
+            请选择帐号：
+          <select _ngcontent-c0="" name="acc_number" id="acc_number"  class="ng-untouched ng-pristine ng-valid">
+          <option _ngcontent-c0="" value=""></option>
+              {% for acc in acc_list %}
+            <option _ngcontent-c0="" value="{{acc.acc_number}}">{{acc.acc_name}}({{acc.acc_number}})</option>
+               {% endfor %}
+          </select>
+          <br _ngcontent-c0="">
+          交易日期：
+          <br _ngcontent-c0="">
+          开始：<input type="date" name="acc_traded_date_s" id="acc_traded_date_s" value="{{traded_date_s}}">
+          <br _ngcontent-c0="">
+          结束：<input type="date" name="acc_traded_date_e" id="acc_traded_date_e" value="{{traded_date_e}}">
+
+          <br _ngcontent-c0=""><br _ngcontent-c0="">
+		   <br _ngcontent-c0="">
+			<input type="button" name="test" value="查询" onclick="query()"/>
+
+        </div>
+        <div _ngcontent-c0="" class="box-body" style="max-height: 400px;overflow: scroll;">
+          <ul _ngcontent-c0="">
+            <!---->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div _ngcontent-c0="" class="col col-lg-9">
+      <div _ngcontent-c0="" class="box box-success">
+        <div _ngcontent-c0="" class="box-header with-border">
+          <h3 _ngcontent-c0="" class="box-title">账户余额</h3>
+        </div>
+        <div _ngcontent-c0="" class="box-body">
+          <table _ngcontent-c0="" class="table table-striped table-hover">
+            <tbody _ngcontent-c0="">
+              <tr _ngcontent-c0="">
+                <td _ngcontent-c0="" style="text-align: right;">账户：</td>
+                <td _ngcontent-c0="">{{balance.acc_number}}</td>
+              </tr>
+              <tr _ngcontent-c0="">
+                <td _ngcontent-c0="" style="text-align: right;">户名：</td>
+                <td _ngcontent-c0="">{{balance.acc_name}}</td>
+              </tr>
+
+              <tr _ngcontent-c0="">
+                <td _ngcontent-c0="" style="text-align: right;">可用余额（元）：</td>
+                <td _ngcontent-c0="">{{"{:,}".format(balance.acc_balance)}}</td>
+              </tr>
+
+              <tr _ngcontent-c0="">
+                <td _ngcontent-c0="" style="text-align: right;">更新时间：</td>
+                <td _ngcontent-c0="">{{balance.created_at}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div _ngcontent-c0="" class="box box-info">
+        <div _ngcontent-c0="" class="box-header with-border">
+          <h3 _ngcontent-c0="" class="box-title">交易记录</h3>
+            <div align="right">
+                <input type="hidden" value="导出凭证" onclick="export_certificate()">
+                <span width="10"></span>
+                <input type="hidden" value="对账单导出" onclick="export_flow()">
+            </div>
+        </div>
+          <form method="post" action="" id="downloadForm" name="downloadForm" target="_blank">
+        <div _ngcontent-c0="" class="box-body">
+          <table _ngcontent-c0="" class="table table-striped table-hover">
+            <tbody _ngcontent-c0="">
+              <tr _ngcontent-c0="">
+                <th _ngcontent-c0="" style="width:2%"><input type="checkBox" name="check_all" value="" onclick="selectAll(this)"/>
+</th>
+                <th _ngcontent-c0="" style="width:13%">交易时间</th>
+                <th _ngcontent-c0="">对方帐号</th>
+                <th _ngcontent-c0="">对方户名</th>
+                <th _ngcontent-c0="" style='text-align:right;'>收入</th>
+                <th _ngcontent-c0="" style='text-align:right;'>支出</th>
+                <th _ngcontent-c0="" style='text-align:right;'>余额</th>
+                  <th _ngcontent-c0="">摘要</th>
+                  <th _ngcontent-c0="" style="width:10%">交易日期</th>
+                <th _ngcontent-c0="">更新时间</th>
+              </tr>
+              {% for traded in treded_list %}
+    			<tr _ngcontent-c0="">
+                <th _ngcontent-c0="" style="width:2%"><input type="checkBox" class="data-check" name="data_check" value="{{traded.acc_transaction_date}}|{{traded.acc_opposite_number}}|{{traded.acc_opposite_name}}|{{traded.acc_credit_money}}|{{traded.acc_drawee_money}}|{{traded.acc_balance}}|{{traded.boc_acc_transaction_no}}"/>
+                </th>
+                <th _ngcontent-c0="">{{traded.acc_transaction_date}}</th>
+                <th _ngcontent-c0="">{{traded.acc_opposite_number}}</th>
+                <th _ngcontent-c0="">{{traded.acc_opposite_name}}</th>
+                <th _ngcontent-c0="" style='text-align:right;'>{{"{:,}".format(traded.acc_credit_money)}}</th>
+                <th _ngcontent-c0="" style='text-align:right;'>{{"{:,}".format(traded.acc_drawee_money)}}</th>
+                <th _ngcontent-c0="" style='text-align:right;'>{{"{:,}".format(traded.acc_balance)}}</th>
+                <th _ngcontent-c0="">{{traded.acc_abstract}}</th>
+                <th _ngcontent-c0="">{{traded.transaction_date}}</th>
+
+                <th _ngcontent-c0="">{{traded.created_at}}</th>
+              </tr>
+  			  {% endfor %}
+
+
+			</tbody>
+          </table>
+        </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+</app-root>
+</body>
+<script type="text/javascript">
+document.getElementById("bank_type").value = '{{ bank_type }}'
+document.getElementById("acc_number").value  = '{{acc_number }}'
+setting={
+
+}
+    search_tag.init("acc_number",setting);//targetid：下拉框的id
+</script>
+</html>
