@@ -2,49 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8c33096-ca9c-497c-bfb3-e103edfa55e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../project/test/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1516636032652.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517304967555.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517305011766.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517305040977.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517305079193.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517305674528.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517305732771.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/files/plutussearch_war.war1517305753824.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../project/need/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../project/need/selenium对元素操作.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../project/query/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../project/query/invoice.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download/downloadMP3.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download/downloadMovie.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download/downloadMusic.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download/test2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download/test3.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/selenium对js操作.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/selenium对元素操作.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/user_agent.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/xpath语法.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/多线程的使用.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/正则.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/need/线程池的使用.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/invoice.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/lagou.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/novel.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/export_certificate.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/simple_app.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/static/css.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/static/jquery-3.3.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/static/search_tag.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/static/search_tag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/static/simple.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/templates/simple.html" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../huarun/bank/cib/balance.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../huarun/bank/cib/check.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../huarun/bank/cib/cib_tools.py" afterPath="" />
@@ -52,34 +9,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../huarun/bank/cib/config/settings.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../huarun/bank/cib/history.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../huarun/bank/cib/trade.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/advertises/ip.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/advertises/ip.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/advertises/lagou.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/advertises/pull_hook.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/advertises/test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/.idea/dingdian.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/database.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/items.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/middlewares.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/pipelines.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/settings.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/spiders/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/dingdian/spiders/dingdian.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/run_spider.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/dingdian/scrapy.cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/message/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/message/zhihu.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/quanshu/fanyi.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/ticket/.idea/12306.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/ticket/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/ticket/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/ticket/12306.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/ticket/code.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../project/ticket/tuniu.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../huarun/BankSpider(旧代码)/AccInfo/AccDetailCRBank.py" afterPath="$PROJECT_DIR$/../huarun/BankSpider(旧代码)/AccInfo/AccDetailCRBank.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../huarun/BankSpider(旧代码)/AccInfo/AccDetailGDBank.py" afterPath="$PROJECT_DIR$/../huarun/BankSpider(旧代码)/AccInfo/AccDetailGDBank.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../huarun/BankSpider(旧代码)/AccInfo/AccDetailJSBank.py" afterPath="$PROJECT_DIR$/../huarun/BankSpider(旧代码)/AccInfo/AccDetailJSBank.py" />
@@ -140,17 +70,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../huarun/bank/wzcb/trade.py" afterPath="$PROJECT_DIR$/../huarun/bank/wzcb/trade.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../huarun/util/data_interface.py" afterPath="$PROJECT_DIR$/../huarun/util/data_interface.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../huarun/util/logger.py" afterPath="$PROJECT_DIR$/../huarun/util/logger.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../project/download/downloadMusic.py" afterPath="$PROJECT_DIR$/../project/download/downloadMusic.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../project/test/test.py" afterPath="$PROJECT_DIR$/../project/test/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/zhangql.iml" afterPath="$PROJECT_DIR$/.idea/zhangql.iml" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/../huarun/bank/hxb/initialization_trade.py" afterPath="$PROJECT_DIR$/../huarun/bank/hxb/initialize.py" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/../huarun/bank/njcb/initialization_trade.py" afterPath="$PROJECT_DIR$/../huarun/bank/njcb/initialize.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../project/advertises/user_agent.py" afterPath="$PROJECT_DIR$/../project/need/user_agent.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../project/quanshu/novel.py" afterPath="$PROJECT_DIR$/../project/query/novel.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../project/test/正则.py" afterPath="$PROJECT_DIR$/../project/need/正则.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -161,16 +83,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/download/test2.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -228,10 +140,6 @@
             <path>
               <item name="zhangql" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zhangql" type="b2602c69:ProjectViewProjectNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
