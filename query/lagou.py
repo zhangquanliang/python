@@ -32,10 +32,11 @@ def go(job_name, city):
     url1 = 'https://www.lagou.com/jobs/%s?%s' % (can2, can1)
 
     req = requests.session()
-    req.get('https://www.lagou.com/')
     headers1 = get_headers('https://www.lagou.com/')
     html = req.get(url=url1, headers=headers1, verify=False).text
-
+    n_cookie = req.cookies.get_dict()['SEARCH_ID']
+    req.cookies['SEARCH_ID'] = n_cookie
+    print(req.cookies.get_dict())
     soup = BeautifulSoup(html, 'html.parser')
     zhiwei = soup.find('a', id='tab_pos')
     number_html = zhiwei.get_text()
@@ -45,10 +46,6 @@ def go(job_name, city):
     page = int(number/15)
     for i in range(1, page+2):
         print(i)
-        try:
-            user_agent = ua.random  # 使用随机USER_AGENT
-        except:
-            user_agent = ua.random
         query3 = {
             "city": city
         }
@@ -64,7 +61,7 @@ def go(job_name, city):
             }
             headers2 = get_headers(url1)
             response = req.post(url=url2, data=data, headers=headers2, verify=False).text
-            print(response)
+            # print(response)
             try:
                 if json.loads(response)['success'] == True:
                     position_list = json.loads(response)['content']['positionResult']['result']
@@ -143,8 +140,10 @@ def parser_position(position_list, position_list_size):
 
 
 if __name__ == '__main__':
-    job_name = input('请输入你想要获取的职位信息 :')
-    city = input('请输入你想要工作城市: ')
+    # job_name = input('请输入你想要获取的职位信息 :')
+    # city = input('请输入你想要工作城市: ')
+    job_name = 'python'
+    city = '上海'
     # ip_list()
     go(job_name, city)
 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>览众资蛛侠</title><!--<base href="/">--><base href="."><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="static/simple.css" rel="stylesheet">
+  <style>.active[_ngcontent-c0]{background-color:#ccc}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style>
+<script type="text/javascript" src="static/jquery-3.3.1.min.js"></script>
+  <script>
+    function save(){
+      var login_user = $('#login_user').val()
+      var login_password = $('#login_password').val()
+      var login_extend1 = $('#login_extend1').val()
+      var bank_type = 'CEB'
+      var url = "/login_info_save"
+      $.post(url, {'login_user':login_user, 'login_password':login_password, 'bank_type':bank_type, 'login_extend1':login_extend1}, function (result) {
+          if (result === "success") {
+            alert('保存成功！')
+            closeWindow();
+          } else {
+            alert('保存失败！');
+          }
+      });
+
+    }
+
+    function closeWindow()
+　　{
+　　　　　window.opener = null;
+　　　　　window.open(' ', '_self', ' ');
+　　　　　window.close();
+　　}
+
+
+  </script>
+
+</head><body class="hold-transition skin-blue sidebar-mini"><app-root _nghost-c0="" ng-version="4.4.3"><header _ngcontent-c0="" class="main-header">
+
+  <a _ngcontent-c0="" class="logo">
+    <span _ngcontent-c0="" class="logo-lg">览众资蛛侠</span>
+  </a>
+
+  <nav _ngcontent-c0="" class="navbar navbar-static-top">
+
+    <div _ngcontent-c0="" class="navbar-custom-menu">
+    </div>
+  </nav>
+</header>
+<div _ngcontent-c0="" class="container-fluid" style="margin-top:20px;">
+  <div _ngcontent-c0="" class="row">
+
+    <div _ngcontent-c0="" class="col col-lg-9">
+      <div _ngcontent-c0="" class="box box-success">
+        <div _ngcontent-c0="" class="box-header with-border">
+          <h3 _ngcontent-c0="" class="box-title">光大银行</h3>
+          <br _ngcontent-c0="">
+          <table>
+            <tr>
+              <td align="right">客户号或别名：</td>
+              <td><input  type="text"  name="login_extend1" id="login_extend1"  ></td>
+            </tr>
+            <tr>
+              <td align="right">操作员或别名：</td>
+              <td><input  type="text"  name="login_user" id="login_user"  ></td>
+            </tr>
+            <tr>
+              <td align="right">密 码：</td>
+              <td><input  type="text"  name="login_password" id="login_password"  ></td>
+            </tr>
+
+          </table>
+          <!--<div style="width:100px">客户号或别名：</div>-->
+          <!--<input  type="text"  name="login_user" id="login_user"  >-->
+        <!--<br _ngcontent-c0="">-->
+          <!--<div style="width:100px">操作员或别名：</div>-->
+          <!--<input  type="text"  name="login_user" id="login_user"  >-->
+        <!--<br _ngcontent-c0="">-->
+          <!--<div style="width:100px">密 码：</div>-->
+          <!--<input  type="text"  name="login_password" id="login_password"  >-->
+        <!--<br _ngcontent-c0="">-->
+          <input type="button" name="save_btn" value="保存" onclick="save()"/>
+
+        </div>
+        <div _ngcontent-c0="" class="box-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</app-root>
+</body>
+</html>

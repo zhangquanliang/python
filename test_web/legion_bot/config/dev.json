@@ -1,0 +1,27 @@
+{
+  "mysql": {
+    "db_type": "mysql",
+    "host": "127.0.0.1",
+    "db": "spider",
+    "port": "3306",
+    "username": "root",
+    "pwd": "password"
+  },
+  "oracle": {
+    "db_type": "oracle",
+    "host": "10.132.122.25",
+    "db": "orcl",
+    "port": "1521",
+    "username": "crbot",
+    "pwd": "crbot123"
+  },
+  "sqlserver": {
+    "host": "",
+    "xxx": "xxx"
+  },
+  "js_bank": {
+    "org_code": "134780479",
+    "username": "cs",
+    "password": "000000"
+  }
+}

@@ -1,0 +1,1 @@
+  下载地址：  https://github.com/tesseract-ocr/tesseract/wiki/4.0-with-LSTM#400-alpha-for-windows

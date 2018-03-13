@@ -5,7 +5,9 @@
 import fake_useragent
 ua = fake_useragent.UserAgent()
 try:
-    for i in range(5):
+    while True:
         print(ua.random)
+        import time
+        time.sleep(1)
 except:
     pass

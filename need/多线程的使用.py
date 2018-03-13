@@ -1,26 +1,52 @@
-#!/usr/bin/python3
+# _*_ coding:utf-8 _*_
+"""
+This file is about thread(dummy)/process pool
+"""
+from multiprocessing import Pool as ProcessPool
+from multiprocessing.dummy import Pool as ThreadPool
+import logging
+from time import sleep, time
+from random import randrange
 
-import _thread
-import time
-
-
-# 为线程定义一个函数
-def print_time( threadName, delay):
-   count = 0
-   while count < 5:
-      time.sleep(delay)
-      count += 1
-      print ("%s: %s" % ( threadName, time.ctime(time.time()) ))
-
-
-# 创建两个线程
-try:
-   _thread.start_new_thread(print_time, ("Thread-1", 1) )
-   _thread.start_new_thread(print_time, ("Thread-2", 1) )
-   print_time("Thread-3", 1)
-except:
-   print ("Error: 无法启动线程")
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(levelname)s %(asctime)s %(processName)s %(message)s',
+                    datefmt='%Y-%m-%d %I:%M:%S')
 
 
-while 1:
-   pass
+def handler(sec):
+    logging.debug('now I will sleep %s S', sec)
+    sleep(sec)
+
+
+def get_pool(b_dummy=True, num=4):
+    """
+    if b_dummy is True then get ThreadPool, or get process pool
+    :param b_dummy: dummy thread Pool or Process pool
+    :param num: thread or process num
+    :return: pool object
+    """
+    if b_dummy:
+        pool = ThreadPool(num)
+    else:
+        pool = ProcessPool(num)
+
+    return pool
+
+
+def test_dummy_thread_pool():
+    start_time = time()
+    # generate task queue parameters lists
+    lst_sleep_sec = [randrange(3, 10) for i in range(10)]
+    pool = get_pool(b_dummy=True)
+
+    results = pool.map(handler, lst_sleep_sec)
+    logging.debug(results)
+    pool.close()
+    pool.join()
+    logging.debug('time consume %s', time() - start_time)
+    pass
+
+
+if __name__ == '__main__':
+    test_dummy_thread_pool()
+    pass

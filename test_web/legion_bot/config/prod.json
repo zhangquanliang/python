@@ -1,0 +1,14 @@
+{
+    "mysql": {
+        "host": "xxxx",
+        "xxxx": "xxx"
+    },
+    "oracle": {
+        "host": "",
+        "xxx": "xxx"
+    },
+    "sqlserver": {
+        "host": "",
+        "xxx": "xxx"
+    }
+}
