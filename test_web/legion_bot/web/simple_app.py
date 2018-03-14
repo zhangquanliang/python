@@ -174,7 +174,7 @@ def download_file():
 
 @app.route('/login_info')
 def config():
-    return render_template('config.html',)
+    return render_template('model_zql.html',)
 
 
 @app.route('/login_info_save', methods=['POST'])

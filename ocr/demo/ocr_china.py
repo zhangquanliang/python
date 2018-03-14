@@ -33,7 +33,7 @@ class Ocr:
         enhance = ImageEnhance.Contrast(image)
         image_enhance = enhance.enhance(4)
         text = pytesseract.image_to_string(image_enhance, config=tessdata_dir_config, lang='chi_sim')
-        # text = pytesseract.image_to_string(image, config=tessdata_dir_config, lang='chi_sim')
+        # text = pytesseract.image_to_string(image, model_zql=tessdata_dir_config, lang='chi_sim')
         return text
 
 

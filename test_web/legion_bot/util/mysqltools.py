@@ -15,7 +15,7 @@ class MysqlTools(object):
 
     # 读取数据库配置
     def __read_sql_config(self):
-        with open("../config/dev.json") as f:
+        with open("../model_zql/dev.json") as f:
             data = json.loads(f.read())
             self.host = data['mysql']['host']
             self.db = data['mysql']['db']

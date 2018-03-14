@@ -46,7 +46,7 @@ def pre_n_day_str(n=1):
 def is_crawl_time(bank_type):
     real_path = os.path.dirname(os.path.realpath(__file__))
     real_path = "/".join(real_path.split("\\")) + "/"
-    with open(real_path + "../config/crawl_time.json") as f:
+    with open(real_path + "../model_zql/crawl_time.json") as f:
         data = json.loads(f.read())
     now_time = datetime.datetime.now()
     for running_time in data[bank_type]["running_time"].split(";"):
