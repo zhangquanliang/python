@@ -1,35 +1,69 @@
-'''
-菜单栏操作   WinMenuSelectItem(“窗口标题”,"", ”主菜单” , ”子菜单1”, ”子菜单2” „„)  点击子菜单
-工具栏操作   ControlCommand(“窗口标题”, "窗口文本", ”工具栏控件名” , "SendCommandID", ”控件ID”)  点击工具栏
-表单控件操作 1、文本框  ControlSetText(“标题”,"",”控件名或ID” ,”输入的字符串数据”) 输入数据
-                       ControlGetText(“标题”,"",”控件名或ID”) 获取文本框数据
-            2、选择控件 ControlCommand(“窗口标题”, "", 控件类名或ID , "SelectString", 选中选项文本) 如选择下拉框的某个选项：
-                       ControlCommand(“窗口标题”, "",控件类名或ID ,"check", ””)
-点击操作    1、控件点击 ControlClick("窗口标题","","控件名或ID","按钮","点击次数") 按钮分左键(left)，右键(right)等
-            2、鼠标点击 MouseClick(“按钮”, “X坐标”,”Y坐标”,”点击次数”)
-窗口操作    1、激活指定窗口 WinActivate("窗口标题", "")
-            2、最大化窗口 WinSetState("窗口标题", "", @SW_MAXIMIZE)
-键盘操作    1、一般字符  Send("向光标激活地方发送的字符串") 向当前激活窗口文本框，发送按键字符
-            2、快捷字符 Send("^s")保存  Send(“{ PRINTSCREEN}”)截屏键  Send(“{ SPACE}”)空格键  Send(“{ ENTER}”)回车键
-像素操作    1、WinGetPos("窗口标题","") 得到系统窗口位置
-            2、ControlGetPosX  得到控件位置坐标
-文件操作    1、一般文件 FileOpen("文件", 0)打开文件    FileCopy("原文件", "目标文件或路径", 1) 复制文件
-            2、ini文件 iniRead ( "文件名", "字段名", "关键字", "默认值")读取文件 iniWrite ( "文件名", "字段名", "键名", "值") 写入ini文件
-windows锁屏处理  1、Send 命令必须要在激活窗口的条件下才能正确执行
-                2、ControlSend命令可以不需要激活窗口就能执行
+# -*- coding=utf-8 -*-
+import win32com.client
+auto_it = win32com.client.Dispatch('AutoItX3.Control')
 
-WinExists    检验窗口是否存在
-win32api.ShellExecute    使用ShellExecute函数运行其他程序ShellExecute(hwnd, op , file , params , dir , bShow )
-WinWait   目标窗口标题
-WinGetClassList   获取指定窗口的所有控件类的列表.WinGetClassList ( "窗口标题" [, "窗口文本"] )
-WinActive  激活指定窗口，使其成功活动状态  WinActivate(class_main_form)
-ControlGetText 从一个窗口获取文本
-ControlFocus 在一个窗口的特定控件上设置焦点 auto_it.ControlFocus(self.class_login, "", control_id)
-ControlClick 在一个窗口的特定控件上点击 ControlClick(class_login, "", "TFBPanel4")、
-ControlSetText 从一个窗口设置文本
-WinWaitClose  暂停脚本的执行，直到请求的窗口不存在为止
-WinSetOnTop   更改窗口的“始终在顶部”属性。auto_it.WinSetOnTop(self.class_main_form, "", 1)  # 设置窗口状态：置顶
-WinGetPosX 得到系统窗口位置
-ControlGetPosX  得到控件位置坐标
-print auto_it.ControlGetPosX('[CLASS:CabinetWClass]', '', 'DirectUIHWND1')
-'''
+# -*- 打开外部程序 -*-
+"""
+os.system('打开的程序')
+ShellExecute("父窗口的句柄，如果没有父窗口，则为0", op , file , params , dir , bShow )
+"""
+
+
+# -*- 键盘控制 -*-
+"""
+Send("按键"[,参数]) 发送
+HotKeySet("热键"[,"自定义功能函数"])  重置热键
+"""
+
+# -*- 鼠标控制 -*-
+"""
+MouseGetCursor() 取鼠标指针类型
+MouseGetPos() 取鼠标坐标
+MouseDown("按键") 鼠标按下
+MouseClickDrag("按键",第一点横坐标,第一点纵坐标,第二点横坐标,第二点纵坐标[,速度]) 鼠标按住拖动
+MouseClick("按键"[,横坐标,纵坐标[,次数[,速度]]]) 鼠标点击
+MouseUp("按键") 鼠标放开
+MouseMove(横坐标,纵坐标[,速度]) 鼠标移动
+"""
+
+# -*- 信息框, 对话框 -*-
+"""
+ProgressOn("标题","主文本"[,"子文本"[,横坐标[,纵坐标[,选项]]]])打开进度条窗口
+ProgressOff()关闭进度条窗口
+SplashOff() 关闭置顶窗口
+ProgressSet(进度值[,"子文本"[,"主文本"]]) 进度设置
+InputBox("标题","提示"[,"缺省文本"[,"密码符号"[,宽度,高度[,左边,右边[,等待时间]]]]]) 输入框
+MsgBox(按钮参数,"标题","信息文本"[,等待时间]) 信息框
+SplashImageOn("标题","图像文件名"[,宽度[,高度[,横坐标[,纵坐标[,选项]]]]]) 置顶图像窗口
+SplashTextOn("标题","文本"[,宽度[,高度[,横坐标[,纵坐标[,选项[,"字体名称"[,"字体大小"[,"字体重量"]]]]]]]]) 置顶文本窗口
+ToolTip("提示文本"[,横坐标,纵坐标]) 置提示文本
+TrayTip("标题","提示文本",等待时间[,图标选项]) 置托盘气泡提示（2000/xp）
+"""
+
+# -*- 窗口管理 -*-
+"""
+WinExists("标题"[,"文字"])窗口是否存在
+WinActive("标题"[,"文字"])窗口是否激活
+WinSetOnTop("标题","文字",参数)窗口置顶
+WinWait("标题"[,"文字"[,等待时间]])等待窗口出现
+WinWaitClose("标题"[,"文字"[,等待时间]])等待窗口关闭
+WinWaitActive("标题"[,"文字"[,等待时间]])等待窗口激活
+WinWaitNotActive("标题"[,"文字"[,等待时间]])等待窗口取消激活状态
+WinMenuSelectItem("标题","文字","菜单项1"[,"菜单项2"[,"菜单项3"……]])调用菜单
+WinClose("标题"[,"文字"])关闭窗口
+WinMinimizeAllUndo()恢复“全部最小化”的窗口
+WinActivate("标题"[,"文字"])激活窗口
+WinKill("标题"[,"文字"])强制关闭窗口
+WinGetTitle("标题"[,"文字"])取窗口标题
+WinGetHandle("标题"[,"文字"])取窗口句柄
+WinGetClientSize("标题"[,"文字"])取窗口客户区大小
+WinGetClassList("标题"[,"文字"])取窗口类列表
+WinGetText("标题"[,"文字"])取窗口文字
+WinGetCaretPos()取窗口中控件坐标
+WinGetState("标题"[,"文字"])取窗口状态
+WinGetPos("标题"[,"文字"])取窗口坐标
+WinMinimizeAll()全部最小化
+WinMove("标题","文字",横坐标,纵坐标[,宽度[,高度]])移动窗口
+WinSetTitle("标题","文字","新标题") 置窗口标题
+WinSetState("标题","文字",参数) 置窗口状态
+"""
