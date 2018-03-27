@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-搜狗微信公众号
+Title = 搜狗微信公众号
+Date = 2018-02-02
 """
 import pdfkit
 import requests

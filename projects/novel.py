@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-全书网小说
+Title = 全书网小说
+Date = 2018-03-02
 """
 import re
 import requests

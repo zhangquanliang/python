@@ -1,6 +1,7 @@
 # encoding=utf8
 """
-酷狗音乐歌曲下载
+Title = 酷狗音乐歌曲下载
+Date = 2018-03-12
 """
 from multiprocessing import Pool
 import json
