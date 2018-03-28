@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import requests
 import re
+import urllib3
+urllib3.disable_warnings()
 """
 Title = 知乎关注粉丝
 Date = 2018-03-27
@@ -20,7 +22,7 @@ class ZhiHu:
     # 知乎粉丝信息
     def zh_fans(self):
         r = requests.session()
-        response = r.get(self.url, headers=self.headers)
+        response = r.get(self.url, headers=self.headers, verify=False)
 
         # 查找共有多少人关注
         reg = re.findall('target="_blank">(.*?)人关注</a>', response.text)
@@ -35,7 +37,7 @@ class ZhiHu:
                 offset = i*20
                 fans_url = 'https://zhuanlan.zhihu.com/api/columns/wajuejiprince/followers?limit=20&offset={}'\
                     .format(offset)
-            response = r.get(fans_url, headers=self.headers)
+            response = r.get(fans_url, headers=self.headers, verify=False)
             for fans_list in response.json():
                 job_name = fans_list['bio']
                 name = fans_list['name']
