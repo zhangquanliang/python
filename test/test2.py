@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import urllib.parse
-def download(name=None):
-    if name:
-        print('111')
-    else:
-        print('222')
+from selenium import webdriver
+import urllib.request
 
-download('1')
+# driver = webdriver.PhantomJS(executable_path=r'D:\Git\MyProject\zhangql\resources\phantomjs.exe')
+# driver.get('http://www.baidu.com')
+#
+# print(driver.current_url)
+response = urllib.request.urlopen('http://www.baidu.com')
+print(response.read().decode('utf-8'))
