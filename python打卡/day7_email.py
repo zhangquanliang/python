@@ -13,7 +13,7 @@ class QQEmail:
     def __init__(self):
         self.smt_obj = smtplib.SMTP_SSL('smtp.qq.com', 465)   # host=smtp.qq.com , post=465
         self.msg_from = '1007228376@qq.com'  # 发送邮箱
-        self.msg_to = '1607228376@qq.com, 3429275949@qq.com'    # 接受邮箱
+        self.msg_to = '136788926@qq.com'    # 接受邮箱
         self.password = 'midanhjvoecubfid'  # 发送方邮箱的授权码
 
     def send_email(self):
@@ -26,24 +26,24 @@ class QQEmail:
         msg.attach(MIMEText(message_context, 'plain', 'utf-8'))
 
         # txt附件
-        att1 = MIMEApplication(open('fans_list.txt', 'rb').read())
-        att1.add_header('Content-Disposition', 'attachment', filename='TXT附件.txt')
-        msg.attach(att1)
+        # att1 = MIMEApplication(open('fans_list.txt', 'rb').read())
+        # att1.add_header('Content-Disposition', 'attachment', filename='TXT附件.txt')
+        # msg.attach(att1)
 
         # pdf附件
-        att2 = MIMEApplication(open('688152326_20180318.pdf', 'rb').read())
-        att2.add_header('Content-Disposition', 'attachment', filename='PDF附件.pdf')
-        msg.attach(att2)
+        # att2 = MIMEApplication(open('688152326_20180318.pdf', 'rb').read())
+        # att2.add_header('Content-Disposition', 'attachment', filename='PDF附件.pdf')
+        # msg.attach(att2)
 
         # xlsx类型的附件
-        att3 = MIMEApplication(open('张全亮10月加班记录.xlsx', 'rb').read())
-        att3.add_header('Content-Disposition', 'attachment', filename='XLSX附件.xlsx')
-        msg.attach(att3)
+        # att3 = MIMEApplication(open('张全亮10月加班记录.xlsx', 'rb').read())
+        # att3.add_header('Content-Disposition', 'attachment', filename='XLSX附件.xlsx')
+        # msg.attach(att3)
 
         # png类型的附件
-        att4 = MIMEApplication(open('HX_verify_code.png', 'rb').read())
-        att4.add_header('Content-Disposition', 'attachment', filename='PNG附件.jpg')
-        msg.attach(att4)
+        # att4 = MIMEApplication(open('HX_verify_code.png', 'rb').read())
+        # att4.add_header('Content-Disposition', 'attachment', filename='PNG附件.jpg')
+        # msg.attach(att4)
 
         # mp3类型的附件
         # mp3part = MIMEApplication(open('kenny.mp3', 'rb').read())
