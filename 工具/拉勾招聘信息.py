@@ -68,8 +68,7 @@ def go(job_name, city):
             position_list_size = json.loads(response)['content']['positionResult']['resultSize']
             parser_position(position_list, position_list_size)
 
-        time.sleep(random.randint(6, 10))
-        # time.sleep(7)
+        time.sleep(8)
     save_excel(position_job_list)
 
 

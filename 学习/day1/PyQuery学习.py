@@ -13,5 +13,5 @@ html = """
  </div>
  """
 doc = pq(html)
-a = (doc('li'))
-print(a[0])
+print(type(doc))
+print(doc.html())
