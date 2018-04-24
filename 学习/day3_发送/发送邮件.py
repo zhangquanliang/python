@@ -10,10 +10,10 @@ from email.mime.text import MIMEText
 msg_from = '1007228376@qq.com'  # 发送方邮箱
 passwd = 'midanhjvoecubfid'  # 填入发送方邮箱的授权码
 # msg_to = 'zhangql@legion-tech.net, 1607228376@qq.com'  # 收件人邮箱
-msg_to = '1607228376@qq.com'  # 收件人邮箱
+msg_to = '2397321927@qq.com'  # 收件人邮箱
 
-subject = "python邮件测试"  # 主题
-content = "python多人发送测试"  # 内容
+subject = "兄弟买挂嘛"  # 主题
+content = "兄弟买挂嘛，穿墙，透视，倒地复活等等等等，现在购买送你一个娃娃！"  # 内容
 msg = MIMEText(content)
 msg['Subject'] = subject
 msg['From'] = msg_from
@@ -37,10 +37,11 @@ try:
     s = smtplib.SMTP_SSL("smtp.qq.com", 465)  # SSL端口465 邮件服务器及端口号
     s.login(msg_from, passwd)
 
-    # 发送邮件
-    s.sendmail(msg_from, msg_to, msg.as_string())
-    # s.close()
-    print("发送成功")
+    for i in range(100):
+        # 发送邮件
+        s.sendmail(msg_from, msg_to, msg.as_string())
+        # s.close()
+        print("发送成功")
 except Exception as error:
     print('发送异常', error)
 finally:

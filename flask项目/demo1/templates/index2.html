@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    {% if user and  age> 15 %}
+        <a href="#">{{ user }}</a>
+        <a href="#">注销</a>
+    {% else %}
+        <a href="#">登录</a>
+        <a href="#">注册</a>
+    {% endif %}
+</body>
+</html>

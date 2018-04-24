@@ -21,7 +21,7 @@ class HuaRun:
         }
         rq = requests.session()
         response = rq.post(self.login_url, data=data)
-        response.encoding='utf-8'
+        response.encoding = 'utf-8'
         html = response.text
         if '该IP已登录，请先注销' in html:
             print('已经连接，可以使用网络!')

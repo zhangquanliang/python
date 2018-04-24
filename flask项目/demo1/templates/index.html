@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    主页
+{% endblock %}
+{% block main %}
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <h1>首页</h1>
+    <img src="{{ url_for('static', filename='images/2png') }}">
+{% endblock %}

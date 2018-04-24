@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""全书网全站小说下载"""
+"""
+Title = 全书网全站小说下载
+Date = 20180423
+"""
 import scrapy
 from ..items import DemoItem
 

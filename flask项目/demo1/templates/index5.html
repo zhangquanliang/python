@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+</head>
+<body>
+    <img src="{{ img_path|default('https://static.qiushibaike.com/images/thumb/anony.png?v=b61e7f5162d14b7c0d5f419cd6649c87') }}">
+
+<hr>
+<p>评论数: [{{ commounts|length }}]</p>
+    <ul>
+    {% for commount in commounts %}
+
+        <li>
+            <a href="#"> {{ commount.user }}</a>
+            <p>{{ commount.context }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
