@@ -29,7 +29,7 @@ class ZhiHu:
         fans_number = int(reg[0].strip())
         num = int(fans_number/20)  # 共有44页
 
-        f = open('fans_list.txt', 'a', encoding='utf-8')
+        f = open('test.txt', 'a', encoding='utf-8')
         for i in range(num+1):
             if i == 0:
                 fans_url = 'https://zhuanlan.zhihu.com/api/columns/wajuejiprince/followers?limit=20'

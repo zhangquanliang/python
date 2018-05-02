@@ -26,7 +26,7 @@ class QQEmail:
         msg.attach(MIMEText(message_context, 'plain', 'utf-8'))
 
         # txt附件
-        # att1 = MIMEApplication(open('fans_list.txt', 'rb').read())
+        # att1 = MIMEApplication(open('test.txt', 'rb').read())
         # att1.add_header('Content-Disposition', 'attachment', filename='TXT附件.txt')
         # msg.attach(att1)
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript">
+        function on() {
+            user1 = document.getElementById('user').value
+            password1 = document.getElementById('password').value
+            {#alert(user1)#}
+            {#alert(password1)#}
+            url = '/main/' + 'user=' + user1 + '&password=' + password1
+            {#alert(url)#}
+            window.location.href=url
+        }
+    </script>
+</head>
+<body>
+    <table>
+        用户名: <input id="user" value="">
+        <hr>
+        密码:   <input id="password" value="">
+    </table>
+    <input type="button" onclick="on()" value="登录">
+</body>
+</html>

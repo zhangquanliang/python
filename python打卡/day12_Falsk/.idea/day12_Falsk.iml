@@ -4,14 +4,13 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="2 for_demo" />
-    <orderEntry type="module" module-name="1 if demo" />
-    <orderEntry type="module" module-name="demo1" />
-    <orderEntry type="module" module-name="demo2" />
-    <orderEntry type="module" module-name="D project" />
-    <orderEntry type="module" module-name="day12_Falsk" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/../day12_Falsk\templates" />
+      </list>
+    </option>
   </component>
 </module>

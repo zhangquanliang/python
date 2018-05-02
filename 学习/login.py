@@ -1,185 +1,137 @@
-# -*- coding: utf-8 -*-
-import sys
+# coding=utf-8
 import time
-import win32api
-import win32con
-import re
-import urllib3
-urllib3.disable_warnings()
+import sys
 
+from selenium import webdriver
 import pymouse
 import pykeyboard
+import urllib3
 from PIL import Image
-from selenium import webdriver
-import requests
 
-from util import tools
+from common.common_tool import console_param_handle, console_result_handle
 from util.tools import Tools
-from bank.cmbe.find_root_path import FindRootPath
-from common.common_tool import console_result_handle, console_param_handle
-FindRootPath.find()
-err_i = 0
+from model.models import LoginAcc, ConsoleResult
+
+urllib3.disable_warnings()  # 屏蔽http警告
+
+try_time = 1  # 尝试次数
 
 
-# 南京银行登录方法
-def login(login_user, login_password, mcrypt_key=None, password_encrypted=None):
-    image_path = './images/NJ_verify_code.png'
-    login_url = 'https://ebank.njcb.com.cn/corporbank/public/login.jsp'
-    emp_sid = ""
+# 模拟用户登录
+def login(username, operator_number, password):
+    global try_time
 
-    if mcrypt_key is None or password_encrypted is None:
-        key = pykeyboard.PyKeyboard()
-        mouse = pymouse.PyMouse()
+    # 实例化鼠标和键盘模拟对象
+    m = pymouse.PyMouse()
+    k = pykeyboard.PyKeyboard()
+    driver = webdriver.Ie(executable_path=r'D:\C Git\D project\zhangql\util_zql\IEDriverServer(zql).exe')
+    start_url = 'https://ebank.hzbank.com.cn/custody/'
+    driver.get(start_url)
+    driver.maximize_window()
+    time.sleep(3)
 
-        driver = webdriver.Ie(executable_path=r'..\..\util\IEDriverServer.exe')
-        driver.maximize_window()
-        driver.get(url=login_url)
+    # 截取验证码
+    driver.get_screenshot_as_file('hzb_screen_shot.png')
+    img = Image.open('hzb_screen_shot.png')
+    region = img.crop((1094, 391, 1198, 427))  # 本地
+    # region = img.crop((952, 297, 1033, 320))  # 生产机
+    path = 'hzb_verify_code.png'
+    region.save(path)
+    # 发送到打码平台获取验证码
+    verify_code = Tools.ocr_verify_code(path)
 
-        # 点击元素ID为verifyCodeImg的位置
-        driver.find_element_by_id('verifyCodeImg').click()
+    # 输入用户名
+    elem = driver.find_element_by_xpath('//input[@ng-model="customerId"]')
+    elem.clear()
+    elem.send_keys(username)
+    time.sleep(1)
 
-        # 验证码xpath地址
-        image_location = '//*[@id="verifyCodeImg"]'
-        driver.save_screenshot(image_path)
-        im = Image.open(image_path)
+    # 输入操作员号
+    # elem = driver.find_element_by_xpath('//input[@ng-model="operId"]')
+    k.press_key(k.tab_key)  # 点tab键可以直接切换
+    k.release_key(k.tab_key)
+    k.type_string(operator_number)
+    time.sleep(1)
 
-        left = driver.find_element_by_xpath(image_location).location['x']
-        top = driver.find_element_by_xpath(image_location).location['y']
-        right = left + driver.find_element_by_xpath(image_location).size['width']
-        bottom = top + driver.find_element_by_xpath(image_location).size['height']
-        im = im.crop((left, top, right, bottom))
-        im.save(image_path)
+    # 输入密码
+    m.click(1030, 406)
+    Tools.key_send(password)
+    time.sleep(1)
 
-        verify_code = tools.Tools.ocr_verify_code(image_path)  # 验证码识别
+    # 输入验证码
+    elem = driver.find_element_by_xpath('//*[@ng-model="verifyCode"]')
+    elem.clear()
+    elem.send_keys(verify_code)
+    time.sleep(1)
 
-        # 填写用户名
-        driver.find_element_by_id('customerId').click()
-        time.sleep(0.5)
-        win32api.keybd_event(17, 0, 0, 0)  # ctrl建
-        win32api.keybd_event(17, 0, win32con.KEYEVENTF_KEYUP, 0)  # 释放按键
-        key.type_string(login_user)
-        time.sleep(0.5)
+    # 点击登录
+    elem = driver.find_element_by_xpath('//*[@ng-click="loginSubmit()"]')
+    elem.click()
+    time.sleep(8)  # 等待网页加载完全
 
-        # 填写密码
-        mouse.click(980, 313, 1, 2)
-        time.sleep(0.5)
-        Tools.key_send(login_password)
-
-        # 填写验证码
-        driver.find_element_by_id('verifyCode').click()
-        key.type_string(verify_code)
-        time.sleep(0.5)
-
-        # 登录按钮
-        driver.find_element_by_id('btn_login').click()
-
-        global err_i
-        for i in range(3):
-            time.sleep(10)
-
-            try:
-                # 获取登录错误信息，登录成功抛出异常
-                err_text = driver.find_element_by_xpath('/HTML/BODY/DIV[6]/DIV[1]').text
-                if err_text.find('未找到该客户') > -1:
-                    driver.quit()
-                    result = {"success": False, "data": {}, "code": 1001, "error": err_text}
+    try:
+        # 获取弹窗警告内容
+        alert = driver.switch_to.alert.text
+        time.sleep(1)
+        # 获取警告对话框的内容
+        if alert:
+            print("获取到的弹窗内容为", alert.text)
+            time.sleep(1)
+            if alert.text == '请输入客户号!' or '客户号输入有误,请输入数字!':
+                if try_time <= 2:
+                    try_time += 1
+                    login(username, operator_number, password)
+                if try_time > 2:
+                    result = ConsoleResult(success=False, code=1001, data={}, error_data={}, error='').to_dict()
                     return result
-                if err_text.find('请输入正确的验证码') > -1 or err_text.find('超时'):
-                    err_i += 1
-                    print(u'验证码错误，正在尝试第%s次重新登录' % err_i)
-                    if err_i == 3:
-                        print(u'验证码识别%s次错误，停止重新登录' % err_i)
-                        result = {"success": False, "data": {}, "code": 1005, "error": err_text}
-                        driver.quit()
-                        return result
-                    driver.quit()
-                    time.sleep(3)
-                    return login(login_user, login_password)
-            except Exception as e:
-                pass
+            elif alert.text == '操作员号输入有误！请输入长度4位的数字！' or alert.text == '交易失败： 操作员数据未找到(-77074)':
+                if try_time <= 2:
+                    try_time += 1
+                    login(username, operator_number, password)
+                if try_time > 2:
+                    result = ConsoleResult(success=False, code=1001, data={}, error_data={}, error='').to_dict()
+                    return result
+            elif alert.text == '交易失败： 用户名或密码错(-77056)':
+                result = ConsoleResult(success=False, code=1003, data={}, error_data={}, error='').to_dict()
+                return result
+            elif alert.text == '验证码输入有误！':
+                if try_time <= 2:
+                    try_time += 1
+                    login(username, operator_number, password)
+                if try_time > 2:
+                    result = ConsoleResult(success=False, code=1004, data={}, error_data={}, error='').to_dict()
+                    return result
+    except Exception as ex:
+        print('异常信息是:', ex)
 
-            html = driver.page_source
-            # 正则提取所需要的参数emp_sid
-            reg = re.findall('<INPUT type=hidden value=(.*?) name=EMP_SID>', html)
-            emp_sid = reg[0]
-            break
+    cookies = driver.get_cookies()
+    login_infos = LoginAcc()
+    cookie_list = []
 
-        cookies = driver.get_cookies()
-        cookie = ""
-        for cookie_ in cookies:
-            cookie = "%s;%s=%s" % (cookie, cookie_["name"], cookie_["value"])
-        driver.quit()
+    # 获取cookie
+    str_cookie = ""
+    cookie_dict = cookies[6]
+    str_cookie = cookie_dict['name'] + '=' + cookie_dict['value']
 
-    else:
-        r = requests.session()
-        r.get(login_url, verify=False)
+    # 获取session_token
+    session_token_dict = cookies[4]
+    session_token = session_token_dict['value']
 
-        code_url = 'https://ebank.njcb.com.cn/corporbank/public/VerifyImage?update=0.027584966143414602'
-        response = r.get(code_url, verify=False)
+    login_infos.login_user = username
+    login_infos.cookie = str_cookie
+    login_infos.authorization_extend1 = session_token
 
-        f = open('./images/NJ_verify_code.png', 'wb')
-        f.write(response.content)
-        f.close()
-
-        verify_code = tools.Tools.ocr_verify_code('./images/NJ_verify_code.png')  # 验证码识别
-
-        post_login_url = 'https://ebank.njcb.com.cn/corporbank/publicLogin.do'
-        data = {
-            "checkCode": verify_code,
-            "customerId": login_user,
-            "inputType": "2",
-            "netType": "1"
-        }
-
-        cookie_dit = r.cookies.get_dict()
-        cookie = ""
-        for key, value in cookie_dit.items():
-            cookie = "%s;%s=%s" % (cookie, key, value)
-
-        response = r.post(post_login_url, data=data, verify=False)
-        html = response.text
-        if html.find(u'未找到该客户账户') > -1:
-            print(u'未找到该客户账户[{}]信息,请核实'.format(login_user))
-            result = {
-                "success": False,
-                "data": {},
-                "code": 1001,
-                "error": '登录账户错误'
-            }
-            return result
-
-        reg = re.findall(r'EMP_SID=(.*?)\|null', html)
-        emp_sid = reg[0]
-
-    if cookie:
-        result = {
-            "success": True,
-            "data": {"cookie": cookie, "emp_sid": emp_sid, "mcrypt_key": '1', },
-            "code": 0,
-            "error": ""
-        }
-    else:
-        result = {
-            "success": False,
-            "data": {},
-            "code": -101,
-            "error": "Cookie获取失败"
-        }
-
+    result = ConsoleResult(success=True, code=0, data=login_infos.to_dict(), error_data={}, error='').to_dict()
+    print(result)
+    driver.quit()
     return result
 
-
-def test():
-    print('test..')
-    console_result = login(login_user='05060124770000535', login_password='888888', mcrypt_key='1', password_encrypted='1')
-    print(console_result)
+def run():
+    console_result = login(username='999900323', operator_number='2002', password='639196')
 
 
 def main():
-    # 入参格式：json_param = sys.argv[1]. sys.argv[0]是当前脚本文件。参数为json格式。
-    # 例：{'login_user':'05060124770000535','login_password':'888888'}
     params = sys.argv
-    # 参数处理
     json_param = console_param_handle(params)
     # 对参数进行校验
     if "login_user" not in json_param.keys() or "login_password" not in json_param.keys():
@@ -191,10 +143,12 @@ def main():
         }
     else:
         # 参数正确，调用主方法，获取结果
-        console_result = login(login_user=json_param['login_user'], login_password=json_param['login_password'])
+        operator_number = None if 'operator_number' not in json_param.keys() else json_param['operator_number']
+        console_result = login(username=json_param['login_user'], operator_number=json_param['login_extend1'],
+                               password=json_param['login_password'])
     print(console_result_handle(console_result))  # 将最终结果输出
 
 
-if __name__ == "__main__":
-    main()
-    # test()
+if __name__ == '__main__':
+    run()
+    # main()

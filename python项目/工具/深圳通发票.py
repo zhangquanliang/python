@@ -65,7 +65,7 @@ class SZTSpider:
                 reg = re.findall('<tr class="odd_body" lsh="(.*?)" zdh="(.*?)" kh="(.*?)" rq="(.*?)" sj="(.*?)">', html)
                 self.download_fp_pdf(reg, url)
         else:
-            print(res.text)
+            return self.sztfp()
 
     # 发送下载pdf请求
     def download_fp_pdf(self, reg, select_url):
@@ -92,11 +92,14 @@ class SZTSpider:
         }
         url1 = 'https://www.shenzhentong.com/Ajax/ElectronicInvoiceAjax.aspx'
         response1 = self.req.post(url1, data=data, headers=self.headers, verify=False)
-        pid = response1.json()['strs']
+        try:
+           pid = response1.json()['strs']
+        except:
+            print(response1.text)
         url2 = 'https://www.shenzhentong.com/service/fpdetail.aspx?nodecode=101007009&pid=%s' % pid
         self.req.get(url2, headers=self.headers, verify=False)
 
-        time.sleep(3)
+        time.sleep(1)
         response3 = self.req.get(select_url, headers=self.headers, verify=False)
         html = response3.text
         self.save_pdf(html)
@@ -120,8 +123,15 @@ class SZTSpider:
 
 if __name__ == '__main__':
     # date = input('请输入想要打印的发票日期: ')
-    cardnum = '689183921'
-    for i in ['0302', '0308', '0313', '0319', '0323', '0330']:
-        date = '2018%s' % i
-        szt = SZTSpider(date=date, cardnum=cardnum)
+    cardnum = '689220671'
+
+    for i in range(1, 29):
+        if i < 10:
+            date = '2018040%s' % i
+        elif i >= 10 and i <20:
+            date = '201804%s' % i
+        else:
+            date = '201804%s' % i
+
+        szt = SZTSpider(date=date)
         szt.sztfp()
