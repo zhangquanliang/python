@@ -136,6 +136,17 @@
               <item name="flask项目" type="b2602c69:ProjectViewProjectNode" />
               <item name="D project" type="47feb1d3:ProjectViewModuleNode" />
             </path>
+            <path>
+              <item name="flask项目" type="b2602c69:ProjectViewProjectNode" />
+              <item name="D project" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="zhangql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flask项目" type="b2602c69:ProjectViewProjectNode" />
+              <item name="D project" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="zhangql" type="462c0819:PsiDirectoryNode" />
+              <item name="flask项目" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -447,13 +458,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demo1/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="12" lean-forward="true" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo1/templates/index6.html" />
     <entry file="file://$PROJECT_DIR$/demo1/继承.py" />
     <entry file="file://$PROJECT_DIR$/demo1/过滤器_demo.py">
@@ -762,6 +766,14 @@
     <entry file="file://$PROJECT_DIR$/../../huarun/bank/cib/history.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-375">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
