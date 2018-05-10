@@ -125,13 +125,13 @@ if __name__ == '__main__':
     # date = input('请输入想要打印的发票日期: ')
     cardnum = '689220671'
 
-    for i in range(1, 29):
-        if i < 10:
-            date = '2018040%s' % i
-        elif i >= 10 and i <20:
-            date = '201804%s' % i
-        else:
-            date = '201804%s' % i
-
-        szt = SZTSpider(date=date)
-        szt.sztfp()
+    # for i in range(1, 31):
+    #     if i < 10:
+    #         date = '2018040%s' % i
+    #     elif i >= 10 and i <20:
+    #         date = '201804%s' % i
+    #     else:
+    #         date = '201804%s' % i
+    date = '2018429'
+    szt = SZTSpider(date=date)
+    szt.sztfp()

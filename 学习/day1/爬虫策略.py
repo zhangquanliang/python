@@ -17,7 +17,7 @@ import requests
 requests.get('http://www.baidu.com',  allow_redirects=False)
 
 
-"""IP代码"""
+"""IP代理"""
 import requests
 proxies = {
   "http": "http://10.10.1.10:3128",

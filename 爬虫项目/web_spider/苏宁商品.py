@@ -21,11 +21,10 @@ def search(commodity):
     html = response.text
     soup = BeautifulSoup(html, 'html.parser')
     commodity_list = soup.find_all('div', class_='product-box')
-
+    print(len(commodity_list))
     # 增加多查询数据取前50条处理
     save_list = []
     for commodity_ in commodity_list:
-        print()
         if len(save_list) == 50:
             break
         commodity_img_url = "https:" + commodity_.find('img')['src2']   # 图片地址

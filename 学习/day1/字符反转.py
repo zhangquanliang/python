@@ -10,12 +10,12 @@ s = 'apple'
 # print("".join(a))
 
 # 3. 递归
-# def func(s):
-#     if len(s) < 1:
-#         return s
-#     return func(s[1:]) + s[0]
-# reslut = func(s)
-# print(reslut)
+def func(s):
+    if len(s) < 1:
+        return s
+    return func(s[1:]) + s[0]
+reslut = func(s)
+print(reslut)
 
 # 4. 使用栈
 # def func(s):
