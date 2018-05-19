@@ -59,7 +59,8 @@ def parser_html(html, save_list, create_date):
         commodity_url = commodity_.find('a', target="_blank")['href']  # 商品地址
         if 'https' not in commodity_url:
             commodity_url = "http:" + commodity_url
-
+        # print(commodity_name, commodity_price, commodity_url, commodity_pj,commodity_shop, commodity_img_url)
+        # print('-' * 100)
         if '笔记本' in commodity_name:
             sql = "insert into jd_bjb(commodity_name, commodity_price, commodity_url, commodity_pj," \
                   "commodity_shop, commodity_img_url, create_date) values('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (

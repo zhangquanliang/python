@@ -1,27 +1,22 @@
 # -*- coding: utf-8 -*-
+import pandas
+
 import requests
-
-url = 'https://app.cmbchina.com/cevs/PrintMain.aspx'
-data = {
-    # "__EVENTARGUMENT": "",
-   "__EVENTTARGET": "Button5",
-   "__EVENTVALIDATION": "/wEWFALpg8H0CQLqjIHzAgK+j5G7DgK+j6kWArmPuRYCuY/RmAkC7IDrug4CoMKT8Q0ClKui+AcClaui+AcCnpfqrw4CmrjtxgkC1JHfrQsClfD7lA8C8cCg+w0C+Kag4AoCnqWJnAUC0/uIhg8Cw6e2lwUCjOeKxgYj2lrPdFHdQMSowbs5vtyNuw+98g==",
-   # "__LASTFOCUS": "",
-   "__VIEWSTATE": "/wEPDwUKMTQxMjM0NjYzMA9kFgICAQ9kFgoCBw8WAh4HVmlzaWJsZWdkAggPFgIfAGdkAgkPDxYEHgRUZXh0ZR8AaGRkAgoPPCsACwIADxYMHhBDdXJyZW50UGFnZUluZGV4Zh4IRGF0YUtleXMWAB4LXyFJdGVtQ291bnQCBB4JUGFnZUNvdW50AgEeFV8hRGF0YVNvdXJjZUl0ZW1Db3VudAIEHwBnZAIWBB4MUGFnZXJWaXNpYmxlZx4EXyFTQgKAgIAIFgJmD2QWCmYPZBYCZg9kFgICAQ8QDxYCHgdDaGVja2VkZ2RkZGQCAQ9kFggCAQ8PFgIfAQUKMjAxOC0wNS0wM2RkAgIPDxYCHwEFCeS6uuawkeW4gWRkAgMPDxYCHwEFDTU2LDU2MCwwMDAuMDBkZAIED2QWAgIBDw8WCB4IQ3NzQ2xhc3MFCGZvbnRibHVlHwEFDOWbnuWNleivpuaDhR4PQ29tbWFuZEFyZ3VtZW50BQ04MDUwMDA0OTQwMDEyHwgCAhYCHgV2YWx1ZQUNODA1MDAwNDk0MDAxMmQCAg9kFggCAQ8PFgIfAQUKMjAxOC0wNS0wM2RkAgIPDxYCHwEFCeS6uuawkeW4gWRkAgMPDxYCHwEFDTI2LDAwMCwwMDAuMDBkZAIED2QWAgIBDw8WBB8BBQzlm57ljZXor6bmg4UfCwUNODA1MDAwNDk0MDAzMxYCHwwFDTgwNTAwMDQ5NDAwMzNkAgMPZBYIAgEPDxYCHwEFCjIwMTgtMDUtMDNkZAICDw8WAh8BBQnkurrmsJHluIFkZAIDDw8WAh8BBQo1NjUsNjAwLjAwZGQCBA9kFgICAQ8PFgQfAQUM5Zue5Y2V6K+m5oOFHwsFDTgwNTAwMDQ5NDAyMzEWAh8MBQ04MDUwMDA0OTQwMjMxZAIED2QWCAIBDw8WAh8BBQoyMDE4LTA1LTAzZGQCAg8PFgIfAQUJ5Lq65rCR5biBZGQCAw8PFgIfAQUNMzAsMDAwLDAwMC4wMGRkAgQPZBYCAgEPDxYEHwEFDOWbnuWNleivpuaDhR8LBQ04MDUwMDA0OTQwMjY1FgIfDAUNODA1MDAwNDk0MDI2NWQCCw8WBh8MBQzlt7Loh7PmnKvpobUeCGRpc2FibGVkBQhkaXNhYmxlZB8AZ2QYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgUFFHZMaXN0JGN0bDAxJENoZWNrQWxsBRV2TGlzdCRjdGwwMiRDaGVja0JveDEFFXZMaXN0JGN0bDAzJENoZWNrQm94MQUVdkxpc3QkY3RsMDQkQ2hlY2tCb3gxBRV2TGlzdCRjdGwwNSRDaGVja0JveDG8u9/5leml3MEiDtKYGlSS6U7h/g==",
-   "__VIEWSTATEGENERATOR": "0961813A",
-   "LstFlg": "2",
-   "TxtbAmt": "0.00",
-   "TxteDate": "2018-05-09",
-   "TxtsDate": "2018-04-10",
-   "TxttAmt": "9999999999999"
-}
-
 headers = {
-    "Cookie": "SelectedCityNo=0021; C3Single.Auth=CLNO=00001D37saqp051418&SLNO=nLNpGjYZXWnSMcu5jwnkalwrIHnZgJ00; ASP.NET_SessionId=msqs1z553pesa245yhhz1ffg; WTFPC=id=2ea330b6cef4981b7bc1526280138178:lv=1526280450441:ss=1526280138178; WEBTRENDS_ID=113.98.240.221-3007627200.30665550::308380A6F6CDCDC38CBFE6642AC",
-   "Host": "app.cmbchina.com",
-   "Referer": "https://app.cmbchina.com/cevs/PrintMain.aspx",
-   "User-Agent": "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
+    "Accept-Language":"zh-CN,zh;q=0.8",
+    "Proxy-Connection":"keep-alive",
+    "Range":"bytes=0-",
+    "Accept":"*/*",
+    "Accept-Encoding":"identity;q=1, *;q=0"
 }
+url = 'https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f190000bbvb9nignbh5ubla0go0&line=0'
+res = requests.get(url, verify=False, headers=headers, allow_redirects=False)
+print(res.headers)
+url1 = res.headers['Location']
+headers["Referer"] = url1
+res2 = requests.get(url1, headers=headers, verify=False)
+print(res2.status_code)
+with open('video.mp4', 'wb') as f:
+    f.write(res2.content)
 
-a = requests.post(url, headers=headers, data=data)
-print(a.text)

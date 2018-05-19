@@ -26,6 +26,12 @@ def middle(t):
     t.pop()
     print(t)
 
+# t = [1, 2, 3, 4, 1212, 121]
+# middle(t)
 
-t = [1, 2, 3, 4, 1212, 121]
-middle(t)
+
+# 4. 斐波纳契数列
+a, b = 0, 1
+for i in range(1, 13):
+    print('第%s个月：%s对兔子' % (i, b))
+    a, b = b, a + b
