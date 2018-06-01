@@ -12,7 +12,7 @@ def say_hello(i):
 # 开启20个线程
 start_time = time.time()
 print(start_time)
-pool = Pool(processes=20)
+pool = Pool(processes=100)
 for i in range(101):
     pool.apply_async(say_hello, [i])
 pool.close()
