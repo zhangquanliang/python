@@ -1,11 +1,20 @@
 # -*- coding: utf-8 -*-
 
-import requests
-from bs4 import BeautifulSoup
-import math
+from multiprocessing.dummy import Pool
+import time
 
-j = 0
-for i in range(3):
-    print(j)
-    j = i
 
+def say_hello(i):
+    print('hello :{}'.format(i))
+    time.sleep(2)
+
+
+# 开启20个线程
+start_time = time.time()
+print(start_time)
+pool = Pool(processes=20)
+for i in range(101):
+    pool.apply_async(say_hello, [i])
+pool.close()
+pool.join()
+print('耗时：{}'.format(time.time() - start_time))
