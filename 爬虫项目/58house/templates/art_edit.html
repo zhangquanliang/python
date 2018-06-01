@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ueditor/ueditor.config.js') }}"></script>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ueditor/ueditor.all.js') }}"></script>
+<script type="text/javascript" charset="UTF-8" src="{{ url_for('static',filename='ueditor/lang/zh-cn/zh-cn.js') }}"></script>
+{% endblock%}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>名称</label>
+        <input type="hidden" name="id" value="{{ art.id }}">
+        {{ form.name(value=art.name) }}
+        {% for v in form.name.errors %}
+        <p style="color: red">{{ v }}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>分类</label>
+        {{ form.category(value=art.category) }}
+        {% for v in form.category.errors %}
+        <p style="color: red">{{ v }}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>号码</label>
+        {{ form.number(value=art.number) }}
+        {% for v in form.number.errors %}
+        <p style="color: red">{{ v }}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>公司</label>
+        {{ form.company(value=art.company) }}
+        {% for v in form.company.errors %}
+        <p style="color: red">{{ v }}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>所属城市</label>
+        {{ form.address(value=art.address) }}
+        {% for v in form.address.errors %}
+        <p style="color: red">{{ v }}</p>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        <label>详细地址</label>
+        {{ form.shop_address(value=art.shop_address) }}
+        {% for v in form.shop_address.errors %}
+        <p style="color: red">{{ v }}</p>
+        {% endfor %}
+    </div>
+    {{ form.submit }}
+    {{ form.csrf_token }}
+</form>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#m1").addClass("active");
+    });
+</script>
+{% endblock %}

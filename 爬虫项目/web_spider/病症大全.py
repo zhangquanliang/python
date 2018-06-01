@@ -56,26 +56,47 @@ def parser_html(html):
     bingyin_url = 'http://jb39.com' + soup.find('h2', class_='jb-h2 zz-by-index').find('a')['href']    # 病因全部地址
     jiancha_url = 'http://jb39.com' + soup.find('h2', class_='jb-h2 zz-jc-index').find('a')['href']  # 检查全部地址
     zhenduan_url = 'http://jb39.com' + soup.find('h2', class_='jb-h2 zz-zd-index').find('a')['href']  # 诊断全部地址
-    buwei = soup.find('ul', class_='ul-ss-3 zz-xx-bw').get_text()  # 症状部位
-    keshi = soup.find('ul', class_='ul-ss-3 zz-xx-ks').get_text()  # 症状科室
-    zhengzhuan = soup.find('ul', class_='ul-ss-3 zz-xx-zz').get_text()  # 相关症状
-    jibing = soup.find('ul', class_='ul-ss-3 zz-xx-jb').get_text()  # 相关疾病
-    zzjiancha = soup.find('ul', class_='ul-ss-3 zz-xx-jc').get_text()  # 症状检查
-
     bingyin = parser_more(bingyin_url)
     jiancha = parser_more(jiancha_url)
     zhenduan = parser_more(zhenduan_url)
+
+    buwei_list = soup.find('ul', class_='ul-ss-3 zz-xx-bw').find_all('li')  # 症状部位
+    buwei = get_zz(buwei_list)
+    keshi_list = soup.find('ul', class_='ul-ss-3 zz-xx-ks').find_all('li')  # 症状科室
+    keshi = get_zz(keshi_list)
+    zhengzhuan_list = soup.find('ul', class_='ul-ss-3 zz-xx-zz').find_all('li')  # 相关症状
+    zhengzhuan = get_zz(zhengzhuan_list)
+    jibing_list = soup.find('ul', class_='ul-ss-3 zz-xx-jb').find_all('li')  # 相关疾病
+    jibing = get_zz(jibing_list)
+    zzjiancha_list = soup.find('ul', class_='ul-ss-3 zz-xx-jc').find_all('li')  # 症状检查
+    zzjiancha = get_zz(zzjiancha_list)
     create_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    if '男' in jianjie or '男' in bingyin or '男' in jiancha:
+        xiangguanrq = '男人'
+    elif '女' in jianjie or '女' in bingyin or '女' in jiancha:
+        xiangguanrq = '女人'
+    else:
+        xiangguanrq = '所有人群'
 
     sql = "insert into zzdq(mingchen, bieming, jianjie, bingyin, jiancha, zhenduan, buwei, keshi, zhengzhuan," \
-          " jibing, zzjiancha, create_date) values ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')" \
+          " jibing, zzjiancha, xiangguanrq,create_date) values ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')" \
         .format(mingchen, bieming, jianjie, bingyin, jiancha, zhenduan, buwei, keshi, zhengzhuan, jibing, zzjiancha,
-                create_date)
+                xiangguanrq, create_date)
     try:
         db_insert(sql)
         print('症状[{}], 别名[{}], 入库成功！' .format(mingchen, bieming))
     except Exception as ex:
         print('入库异常! {}'.format(ex))
+
+
+def get_zz(zz_list):
+    if len(zz_list) == 1:
+        return zz_list[0].find('a').get_text()
+    result = ""
+    for i in zz_list:
+        s = i.find('a').get_text()
+        result += s + "$"
+    return result[:-1]
 
 
 # 数据库连接入库
@@ -99,11 +120,12 @@ def parser_more(url):
 
 
 if __name__ == '__main__':
-    pool = ThreadPoolExecutor(max_workers=20)
+    pool = ThreadPoolExecutor(max_workers=10)
     all_task = []
     for symptom_url in get_symptom_url():
         fu = pool.submit(get_symptom_context, symptom_url)
         all_task.append(fu)
+        # break
     wait(all_task)
     # session.close()
     # connect.close()

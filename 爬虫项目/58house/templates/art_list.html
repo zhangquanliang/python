@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% import "page.html" as pg %}
+{% block css %}
+<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>名称</th>
+        <th>分类</th>
+        <th>号码</th>
+        <th>公司</th>
+        <th>城市</th>
+        <th>创建时间</th>
+        <th>详细地址</th>
+        <th>管理操作</th>
+    </tr>
+    </thead>
+    {% for v in page_date.items %}
+    <tr>
+        <td>{{ v.name }}</td>
+        <td>{{ v.category }}</td>
+        <td>{{ v.number }}</td>
+        <td>{{ v.company }}</td>
+        <td>{{ v.address }}</td>
+        <td>{{ v.created_time }}</td>
+        <td>{{ v.shop_address }}</td>
+        <td>
+            <a href="{{ url_for('art_edit',id=v.id) }}" class="btn btn-sm btn-outline-warning">编辑</a>
+            <a href="{{ url_for('art_del',id=v.id) }}" class="btn btn-sm btn-outline-danger">删除</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{{ pg.page(page_date,'art_list') }}
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function() {
+            $("#m2").addClass("active");
+        });
+    </script>
+{% endblock %}
