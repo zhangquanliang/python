@@ -260,7 +260,7 @@ div.edui-box {
     /*box-shadow: 1px 1px 3px #818181;*/
     /*-webkit-box-shadow: 2px 2px 3px #818181;*/
     /*-moz-box-shadow: 2px 2px 3px #818181;*/
-    /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius = '2', MakeShadow = 'true', ShadowOpacity = '0.5');*/
+    /*filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius = '2', MakeShadow = 'true', ShadowOpacity = '0.1');*/
 }
 
 .edui-default .edui-editor-toolbarmsg {

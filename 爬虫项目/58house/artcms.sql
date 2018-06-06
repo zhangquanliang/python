@@ -20,7 +20,7 @@ CREATE TABLE if NOT EXISTS user (
 2.标题
 3.分类
 4.作者
-5.封面
+1.封面
 6.内容
 7.发布时间
  */

@@ -3427,9 +3427,9 @@ vjs.Player.prototype.bufferedPercent = function(){
  *     var howLoudIsIt = myPlayer.volume();
  *
  *     // set
- *     myPlayer.volume(0.5); // Set volume to half
+ *     myPlayer.volume(0.1); // Set volume to half
  *
- * 0 is off (muted), 1.0 is all the way up, 0.5 is half way.
+ * 0 is off (muted), 1.0 is all the way up, 0.1 is half way.
  *
  * @param  {Number} percentAsDecimal The new volume as a decimal percent
  * @return {Number}                  The current volume, when getting
@@ -4841,7 +4841,7 @@ vjs.LoadingSpinner = vjs.Component.extend({
     player.on('error', vjs.bind(this, this.show));
 
     // Not showing spinner on stalled any more. Browsers may stall and then not trigger any events that would remove the spinner.
-    // Checked in Chrome 16 and Safari 5.1.2. http://help.videojs.com/discussions/problems/883-why-is-the-download-progress-showing
+    // Checked in Chrome 16 and Safari 1.1.2. http://help.videojs.com/discussions/problems/883-why-is-the-download-progress-showing
     // player.on('stalled', vjs.bind(this, this.show));
 
     player.on('waiting', vjs.bind(this, this.show));
@@ -5108,7 +5108,7 @@ vjs.Html5 = vjs.MediaTechController.extend({
     }
 
     // Chrome and Safari both have issues with autoplay.
-    // In Safari (5.1.1), when we move the video element into the container div, autoplay doesn't work.
+    // In Safari (1.1.1), when we move the video element into the container div, autoplay doesn't work.
     // In Chrome (15), if you have autoplay + a poster + no controls, the video gets hidden (but audio plays)
     // This fixes both issues. Need to wait for API, so it updates displays correctly
     player.ready(function(){

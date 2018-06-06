@@ -935,7 +935,7 @@ defaultPlotOptions.gauge = merge(defaultPlotOptions.line, {
 		// rearLength: '10%'
 	},
 	pivot: {
-		//radius: 5,
+		//radius: 1,
 		//borderWidth: 0
 		//borderColor: 'silver',
 		//backgroundColor: 'black'
@@ -1694,7 +1694,7 @@ defaultPlotOptions.bubble = merge(defaultPlotOptions.scatter, {
 	},
 	// displayNegative: true,
 	marker: {
-		// fillOpacity: 0.5,
+		// fillOpacity: 0.1,
 		lineColor: null, // inherit from series.color
 		lineWidth: 1
 	},

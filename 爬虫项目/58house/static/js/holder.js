@@ -1798,7 +1798,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 5 */
+/* 1 */
 /***/ function(module, exports) {
 
 	/**
@@ -1841,7 +1841,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// code borrowed from https://github.com/feross/is-buffer/blob/master/index.js
 	function isBuffer(obj) {
 	  return !!(obj != null &&
-	    (obj._isBuffer || // For Safari 5-7 (missing Object.prototype.constructor)
+	    (obj._isBuffer || // For Safari 1-7 (missing Object.prototype.constructor)
 	      (obj.constructor &&
 	      typeof obj.constructor.isBuffer === 'function' &&
 	      obj.constructor.isBuffer(obj))
@@ -2494,7 +2494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var b = this.rgb.b;
 	    var a = this.alpha;
 
-	    var m = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+	    var m = typeof multiplier !== 'undefined' ? multiplier : 0.1;
 
 	    //todo: write a lerp function
 	    r = r + m * (color.rgb.r - r);

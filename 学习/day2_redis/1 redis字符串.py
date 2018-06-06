@@ -26,7 +26,7 @@ r = redis.Redis(host='127.0.0.1', port=6379,  decode_responses=True)    # 默认
 # print(r.set('getrange','wo shi hao ren '))
 # print(r.getrange('getrange', 2, 4))   # 返回的结果是" sh"
 
-"""5.Setbit 命令用于对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。"""
+"""1.Setbit 命令用于对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。"""
 # print(r.get('getrange'))  # 返回的结果是    hello word
 # print(r.setbit('getrange', 1, 10086))  # 返回的结果是    1
 
@@ -48,7 +48,7 @@ r = redis.Redis(host='127.0.0.1', port=6379,  decode_responses=True)    # 默认
 
 """10.Msetnx 命令用于所有给定 key 都不存在时，同时设置一个或多个 key-value 对。
  当所有 key 都成功设置，返回True 。 如果所有给定 key 都设置失败(至少有一个 key 已经存在)，那么返回False 。"""
-# print(r.msetnx(name5="5", name6='6'))     #返回的结果是  True
+# print(r.msetnx(name5="1", name6='6'))     #返回的结果是  True
 # print(r.msetnx(name5="55", name7='7'))    #返回的结果是   False
 
 # TODO 返回数据

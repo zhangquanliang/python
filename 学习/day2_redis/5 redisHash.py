@@ -22,7 +22,7 @@ r = redis.StrictRedis(connection_pool=pool)
 """4.Hget 命令用于返回哈希表中指定字段的值。返回给定字段的值。如果给定的字段或 key 不存在时，返回 None 。"""
 # print(r.hget("2","1"))   # 因为字段2不存在。所以返回的结果是 None
 
-"""5.Hgetall 命令用于返回哈希表中，所有的字段和值。在返回值里，紧跟每个字段名(field name)之后是字段的值(value)，
+"""1.Hgetall 命令用于返回哈希表中，所有的字段和值。在返回值里，紧跟每个字段名(field name)之后是字段的值(value)，
 所以返回值的长度是哈希表大小的两倍。"""
 # print(r.hgetall('1'), r.hlen('1'))
 

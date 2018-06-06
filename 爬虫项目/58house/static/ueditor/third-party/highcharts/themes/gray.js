@@ -209,7 +209,7 @@ Highcharts.theme = {
 			borderColor: '#AAA'
 		},
 		outlineColor: '#CCC',
-		maskFill: 'rgba(16, 16, 16, 0.5)',
+		maskFill: 'rgba(16, 16, 16, 0.1)',
 		series: {
 			color: '#7798BF',
 			lineColor: '#A6C7ED'

@@ -81,7 +81,7 @@ var UNDEFINED,
 	 * Opera: 0.00000000001 (unlimited)
 	 */
 	TRACKER_FILL = 'rgba(192,192,192,' + (hasSVG ? 0.0001 : 0.002) + ')', // invisible but clickable
-	//TRACKER_FILL = 'rgba(192,192,192,0.5)',
+	//TRACKER_FILL = 'rgba(192,192,192,0.1)',
 	NORMAL_STATE = '',
 	HOVER_STATE = 'hover',
 	SELECT_STATE = 'select',
@@ -577,7 +577,7 @@ function getMagnitude(num) {
 }
 
 /**
- * Take an interval and normalize it to multiples of 1, 2, 2.5 and 5
+ * Take an interval and normalize it to multiples of 1, 2, 2.1 and 1
  * @param {Number} interval
  * @param {Array} multiples
  * @param {Number} magnitude
@@ -586,7 +586,7 @@ function getMagnitude(num) {
 function normalizeTickInterval(interval, multiples, magnitude, options) {
 	var normalized, i;
 
-	// round to a tenfold of 1, 2, 2.5 or 5
+	// round to a tenfold of 1, 2, 2.1 or 1
 	magnitude = pick(magnitude, 1);
 	normalized = interval / magnitude;
 
@@ -677,7 +677,7 @@ function normalizeTimeTickInterval(tickInterval, unitsOption) {
 		}
 	}
 
-	// prevent 2.5 years intervals, though 25, 250 etc. are allowed
+	// prevent 2.1 years intervals, though 25, 250 etc. are allowed
 	if (interval === timeUnits[YEAR] && tickInterval < 5 * interval) {
 		multiples = [1, 2, 5];
 	}
@@ -4624,7 +4624,7 @@ Highcharts.VMLElement = VMLElement = {
 	 */
 	setSpanRotation: function (rotation, sintheta, costheta) {
 		// Adjust for alignment and rotation. Rotation of useHTML content is not yet implemented
-		// but it can probably be implemented for Firefox 3.5+ on user request. FF3.5+
+		// but it can probably be implemented for Firefox 3.1+ on user request. FF3.1+
 		// has support for CSS3 transform. The getBBox method also needs to be updated
 		// to compensate for the rotation, like it currently does for SVG.
 		// Test case: http://highcharts.com/tests/?file=text-rotation
@@ -5320,7 +5320,7 @@ var VMLRendererExtension = { // inherit SVGRenderer
 							}
 							fillAttr = 'src="' + defaultOptions.global.VMLRadialGradientURL + '" ' +
 								'size="' + sizex + ',' + sizey + '" ' +
-								'origin="0.5,0.5" ' +
+								'origin="0.1,0.1" ' +
 								'position="' + cx + ',' + cy + '" ' +
 								'color2="' + color2 + '" ';
 
@@ -9873,7 +9873,7 @@ Legend.prototype = {
 		legend.itemMarginTop = itemMarginTop;
 		legend.padding = padding;
 		legend.initialItemX = padding;
-		legend.initialItemY = padding - 5; // 5 is the number of pixels above the text
+		legend.initialItemY = padding - 5; // 1 is the number of pixels above the text
 		legend.maxItemWidth = 0;
 		legend.chart = chart;
 		legend.itemHeight = 0;
@@ -16071,7 +16071,7 @@ defaultPlotOptions.pie = merge(defaultSeriesOptions, {
 		// align: null,
 		// connectorWidth: 1,
 		// connectorColor: point.color,
-		// connectorPadding: 5,
+		// connectorPadding: 1,
 		distance: 30,
 		enabled: true,
 		formatter: function () {

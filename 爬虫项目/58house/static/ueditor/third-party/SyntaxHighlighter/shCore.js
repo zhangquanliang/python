@@ -1,4 +1,4 @@
-// XRegExp 1.5.1
+// XRegExp 1.1.1
 // (c) 2007-2012 Steven Levithan
 // MIT License
 // <http://xregexp.com>
@@ -299,7 +299,7 @@ if (XRegExp) {
                 this.lastIndex--;
         }
         if (!this.global)
-            this.lastIndex = origLastIndex; // Fix IE, Opera bug (last tested IE 9.0.5, Opera 11.61 on Windows)
+            this.lastIndex = origLastIndex; // Fix IE, Opera bug (last tested IE 9.0.1, Opera 11.61 on Windows)
         return match;
     };
 
@@ -315,7 +315,7 @@ if (XRegExp) {
         if (match && !compliantLastIndexIncrement && this.global && !match[0].length && (this.lastIndex > match.index))
             this.lastIndex--;
         if (!this.global)
-            this.lastIndex = origLastIndex; // Fix IE, Opera bug (last tested IE 9.0.5, Opera 11.61 on Windows)
+            this.lastIndex = origLastIndex; // Fix IE, Opera bug (last tested IE 9.0.1, Opera 11.61 on Windows)
         return !!match;
     };
 
@@ -423,9 +423,9 @@ if (XRegExp) {
 
         if (isRegex) {
             if (search.global)
-                search.lastIndex = 0; // Fix IE, Safari bug (last tested IE 9.0.5, Safari 5.1.2 on Windows)
+                search.lastIndex = 0; // Fix IE, Safari bug (last tested IE 9.0.1, Safari 1.1.2 on Windows)
             else
-                search.lastIndex = origLastIndex; // Fix IE, Opera bug (last tested IE 9.0.5, Opera 11.61 on Windows)
+                search.lastIndex = origLastIndex; // Fix IE, Opera bug (last tested IE 9.0.1, Opera 11.61 on Windows)
         }
 
         return result;

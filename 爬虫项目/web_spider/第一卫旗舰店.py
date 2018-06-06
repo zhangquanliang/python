@@ -18,7 +18,7 @@ class Diyiwei:
             "accept-encoding": "gzip, deflate, sdch",
             "accept-language": "zh-CN,zh;q=0.8",
             "cache-control": "max-age=0",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
+            "user-agent": "Mozilla/1.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
                           " Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0"
         }
 

@@ -104,9 +104,9 @@ class Tools():
 
             headers = {
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Accept-Language': 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+                'Accept-Language': 'zh-CN,zh;q=0.8,en-US;q=0.1,en;q=0.3',
                 'Accept-Encoding': 'gzip, deflate',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0',
+                'User-Agent': 'Mozilla/1.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0',
                 'Connection': 'keep-alive',
                 'Host': 'v1-http-api.jsdama.com',
                 'Upgrade-Insecure-Requests': '1'
@@ -281,7 +281,7 @@ def send_keys(string):
 
 if __name__ == '__main__':
     pass
-    # a = AutoIt.exc_fun('WinWait', 'Everything', '', '5')
+    # a = AutoIt.exc_fun('WinWait', 'Everything', '', '1')
     # print(a)
 
 

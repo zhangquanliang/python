@@ -30,7 +30,7 @@ class LianjiaSpider(scrapy.Spider):
         totalPrice__ = response.xpath("//ul[@class='sellListContent']/li/div[@class='info clear']/div[6]/div[1]/span/text()").extract()
         totalPrice_ = response.xpath("//ul[@class='sellListContent']/li/div[@class='info clear']/div[6]/div[1]/text()").extract()
         unitPrice_ = response.xpath("//ul[@class='sellListContent']/li/div[@class='info clear']/div[6]/div[2]/span/text()").extract()
-        tag_ = response.xpath("//ul[@class='sellListContent']/li/div[@class='info clear']/div[5]").extract()
+        tag_ = response.xpath("//ul[@class='sellListContent']/li/div[@class='info clear']/div[1]").extract()
         house_url_ = response.xpath("//ul[@class='sellListContent']//li/a/@href").extract()
         for i in range(len(house_url_)):
             title = title_[i]

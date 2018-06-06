@@ -4,7 +4,7 @@
 * Copyright (c) 2014 Jon Rohan, James M. Greene
 * Licensed MIT
 * http://zeroclipboard.org/
-* v2.0.0-beta.5
+* v2.0.0-beta.1
 */
 (function(window) {
   "use strict";

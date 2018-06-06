@@ -5,7 +5,7 @@ class HuaRun:
     def __init__(self):
         self.login_url = 'http://172.31.3.83/webAuth/index.htm?www.people.com.cn/'
         self.header = {
-            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
+            "User-Agent":"Mozilla/1.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
             "Referer":"http://172.31.3.83/webAuth/index.htm?www.people.com.cn/",
             "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
             "Accept-Encoding":"gzip, deflate",

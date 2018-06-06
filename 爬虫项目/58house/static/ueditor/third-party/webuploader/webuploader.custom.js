@@ -2139,7 +2139,7 @@
                         // 上传成功
                         COMPLETE:     4,
                         // 上传取消
-                        CANCELLED:     5
+                        CANCELLED:     1
                     }
              */
             getStatus: function() {
@@ -3995,7 +3995,7 @@
     // DateTime : 2013:09:01 22:53:55
     // ExifIFDPointer : 190
     // ExposureTime : 0.058823529411764705 [1/17]
-    // FNumber : 2.4 [12/5]
+    // FNumber : 2.4 [12/1]
     // ExposureProgram : Normal program
     // ISOSpeedRatings : 800
     // ExifVersion : 0220
@@ -5010,7 +5010,7 @@
                         data[dataOff+4] = tmp10 - tmp11;
     
                         var z1 = (tmp12 + tmp13) * 0.707106781; /* c4 */
-                        data[dataOff+2] = tmp13 + z1; /* phase 5 */
+                        data[dataOff+2] = tmp13 + z1; /* phase 1 */
                         data[dataOff+6] = tmp13 - z1;
     
                         /* Odd part */
@@ -5024,7 +5024,7 @@
                         var z4 = 1.306562965 * tmp12 + z5; /* c2+c6 */
                         var z3 = tmp11 * 0.707106781; /* c4 */
     
-                        var z11 = tmp7 + z3;    /* phase 5 */
+                        var z11 = tmp7 + z3;    /* phase 1 */
                         var z13 = tmp7 - z3;
     
                         data[dataOff+5] = z13 + z2; /* phase 6 */
@@ -5067,7 +5067,7 @@
                         data[dataOff+32] = tmp10p2 - tmp11p2;
     
                         var z1p2 = (tmp12p2 + tmp13p2) * 0.707106781; /* c4 */
-                        data[dataOff+16] = tmp13p2 + z1p2; /* phase 5 */
+                        data[dataOff+16] = tmp13p2 + z1p2; /* phase 1 */
                         data[dataOff+48] = tmp13p2 - z1p2;
     
                         /* Odd part */
@@ -5081,7 +5081,7 @@
                         var z4p2 = 1.306562965 * tmp12p2 + z5p2; /* c2+c6 */
                         var z3p2 = tmp11p2 * 0.707106781; /* c4 */
     
-                        var z11p2 = tmp7p2 + z3p2;  /* phase 5 */
+                        var z11p2 = tmp7p2 + z3p2;  /* phase 1 */
                         var z13p2 = tmp7p2 - z3p2;
     
                         data[dataOff+40] = z13p2 + z2p2; /* phase 6 */

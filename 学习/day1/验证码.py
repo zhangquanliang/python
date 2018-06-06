@@ -76,7 +76,7 @@ class Wrtrhj(scrapy.Spider):
                            'Accept': '*/*',
                            'Accept-Encoding': 'gzip, deflate',
                            'Accept-Language': 'zh-CN,zh;q=0.8',
-                           'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36 ',
+                           'User-Agent': 'Mozilla/1.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36 ',
                            'X-Requested-With': 'XMLHttpRequest',
                            'Origin': 'http://114.251.10.109',
                            'Connection': 'keep-alive',

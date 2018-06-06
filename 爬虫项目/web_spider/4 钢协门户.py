@@ -11,7 +11,7 @@ from multiprocessing import Pool
 
 rq = requests.session()
 headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
+        "User-Agent": "Mozilla/1.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
         " Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
         "X-Requested-With": "XMLHttpRequest",
         "Accept": "application/json, text/javascript, */*"

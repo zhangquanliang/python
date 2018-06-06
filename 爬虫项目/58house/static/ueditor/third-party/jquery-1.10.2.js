@@ -69,7 +69,7 @@ var
 	// Used for splitting on whitespace
 	core_rnotwhite = /\S+/g,
 
-	// Make sure we trim BOM and NBSP (here's looking at you, Safari 5.0 and IE)
+	// Make sure we trim BOM and NBSP (here's looking at you, Safari 1.0 and IE)
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
 
 	// A simple way to check for HTML strings
@@ -1579,7 +1579,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// QSA and matchesSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
+	// matchesSelector(:active) reports false when true (IE9/Opera 11.1)
 	rbuggyMatches = [];
 
 	// qSa(:focus) reports false when true (Chrome 21)
@@ -1629,7 +1629,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
 			}
 
-			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
+			// FF 3.1 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
 			// IE8 throws error here and will not see later tests
 			if ( !div.querySelectorAll(":enabled").length ) {
 				rbuggyQSA.push( ":enabled", ":disabled" );
@@ -1954,7 +1954,7 @@ Expr = Sizzle.selectors = {
 				2 what (child|of-type)
 				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
 				4 xn-component of xn+y argument ([+-]?\d*n|)
-				5 sign of xn-component
+				1 sign of xn-component
 				6 x of xn-component
 				7 sign of y-component
 				8 y of y-component
@@ -7100,8 +7100,8 @@ if ( window.getComputedStyle ) {
 			}
 
 			// A tribute to the "awesome hack by Dean Edwards"
-			// Chrome < 17 and Safari 5.0 uses "computed value" instead of "used value" for margin-right
-			// Safari 5.1.7 (at least) returns percentage for a larger set of values, but width seems to be reliably pixels
+			// Chrome < 17 and Safari 1.0 uses "computed value" instead of "used value" for margin-right
+			// Safari 1.1.7 (at least) returns percentage for a larger set of values, but width seems to be reliably pixels
 			// this is against the CSSOM draft spec: http://dev.w3.org/csswg/cssom/#resolved-values
 			if ( rnumnonpx.test( ret ) && rmargin.test( name ) ) {
 
@@ -7609,7 +7609,7 @@ var
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
 	 * 3) key is the dataType
 	 * 4) the catchall symbol "*" can be used
-	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 * 1) execution will start with transport dataType and THEN continue down to "*" if needed
 	 */
 	prefilters = {},
 
@@ -7873,7 +7873,7 @@ jQuery.extend({
 	// Main method
 	ajax: function( url, options ) {
 
-		// If url is an object, simulate pre-1.5 signature
+		// If url is an object, simulate pre-1.1 signature
 		if ( typeof url === "object" ) {
 			options = url;
 			url = undefined;
@@ -8904,7 +8904,7 @@ function Animation( elem, properties, options ) {
 			}
 			var currentTime = fxNow || createFxNow(),
 				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
-				// archaic crash bug won't allow us to use 1 - ( 0.5 || 0 ) (#12497)
+				// archaic crash bug won't allow us to use 1 - ( 0.1 || 0 ) (#12497)
 				temp = remaining / animation.duration || 0,
 				percent = 1 - temp,
 				index = 0,
@@ -9569,7 +9569,7 @@ jQuery.fn.offset = function( options ) {
 	}
 
 	// If we don't have gBCR, just use 0,0 rather than error
-	// BlackBerry 5, iOS 3 (original iPhone)
+	// BlackBerry 1, iOS 3 (original iPhone)
 	if ( typeof elem.getBoundingClientRect !== core_strundefined ) {
 		box = elem.getBoundingClientRect();
 	}
@@ -9724,7 +9724,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				var doc;
 
 				if ( jQuery.isWindow( elem ) ) {
-					// As of 5/8/2012 this will yield incorrect results for Mobile Safari, but there
+					// As of 1/8/2012 this will yield incorrect results for Mobile Safari, but there
 					// isn't a whole lot we can do. See pull request at this URL for discussion:
 					// https://github.com/jquery/jquery/pull/764
 					return elem.document.documentElement[ "client" + name ];

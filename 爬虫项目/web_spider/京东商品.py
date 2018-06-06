@@ -26,7 +26,7 @@ def search(commodity):
     rq.get(url)
     headers = {
         "referer": url,
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0"
+        "user-agent": "Mozilla/1.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0"
     }
     save_list = []  # 增加多查询数据取前50条处理
     for i in range(2):

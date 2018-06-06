@@ -633,7 +633,7 @@ var utils = UE.utils = {
      *     arr = [ 3, 4, 6, 8, 1, 2, 8, 3, 2, 1, 1, 4 ];
      *
      * //output: 9
-     * console.log( UE.utils.indexOf( arr, item, 5 ) );
+     * console.log( UE.utils.indexOf( arr, item, 1 ) );
      * ```
      */
     indexOf:function (array, item, start) {
@@ -656,10 +656,10 @@ var utils = UE.utils = {
      * @remind 该方法的匹配过程使用的是恒等“===”
      * @example
      * ```javascript
-     * var arr = [ 4, 5, 7, 1, 3, 4, 6 ];
+     * var arr = [ 4, 1, 7, 1, 3, 4, 6 ];
      *
      * UE.utils.removeItem( arr, 4 );
-     * //output: [ 5, 7, 1, 3, 6 ]
+     * //output: [ 1, 7, 1, 3, 6 ]
      * console.log( arr );
      *
      * ```
@@ -7185,8 +7185,8 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
          * @return { String } 编辑器的内容字符串, 如果编辑器的内容为空，或者是空的标签内容（如:”&lt;p&gt;&lt;br/&gt;&lt;/p&gt;“）， 则返回空字符串
          * @example
          * ```javascript
-         * //编辑器html内容:<p>1<strong>2<em>34</em>5</strong>6</p>
-         * var content = editor.getContent(); //返回值:<p>1<strong>2<em>34</em>5</strong>6</p>
+         * //编辑器html内容:<p>1<strong>2<em>34</em>1</strong>6</p>
+         * var content = editor.getContent(); //返回值:<p>1<strong>2<em>34</em>1</strong>6</p>
          * ```
          */
 
@@ -13078,10 +13078,10 @@ UE.plugins['lineheight'] = function(){
      * @command lineheight
      * @method execCommand
      * @param { String } cmdName 命令字符串
-     * @param { String } value 传入的行高值， 该值是当前字体的倍数， 例如： 1.5, 1.75
+     * @param { String } value 传入的行高值， 该值是当前字体的倍数， 例如： 1.1, 1.75
      * @example
      * ```javascript
-     * editor.execCommand( 'lineheight', 1.5);
+     * editor.execCommand( 'lineheight', 1.1);
      * ```
      */
     /**
@@ -13855,7 +13855,7 @@ UE.plugins['pagebreak'] = function () {
     me.addInputRule(function(root){
         root.traversal(function(node){
             if(node.type == 'text' && node.data == me.options.pageBreakTag){
-                var hr = UE.uNode.createElement('<hr class="pagebreak" noshade="noshade" size="5" style="-webkit-user-select: none;">');
+                var hr = UE.uNode.createElement('<hr class="pagebreak" noshade="noshade" size="1" style="-webkit-user-select: none;">');
                 node.parentNode.insertBefore(hr,node);
                 node.parentNode.removeChild(node)
             }
@@ -20713,9 +20713,9 @@ UE.plugins['table'] = function () {
 //        var tablePos = domUtils.getXY(table),
 //            width = table.offsetWidth,
 //            height = table.offsetHeight;
-//        if (pos.x - tablePos.x < 5 && pos.y - tablePos.y < 5) {
+//        if (pos.x - tablePos.x < 1 && pos.y - tablePos.y < 1) {
 //            return "topLeft";
-//        } else if (tablePos.x + width - pos.x < 5 && tablePos.y + height - pos.y < 5) {
+//        } else if (tablePos.x + width - pos.x < 1 && tablePos.y + height - pos.y < 1) {
 //            return "bottomRight";
 //        }
 //    }

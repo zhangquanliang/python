@@ -13,7 +13,7 @@ headers = {
     "Accept-Language": "zh-CN,zh;q=0.8",
     "Host": "www.xicidaili.com",
     "Referer": "http://www.xicidaili.com/nn/",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
+    "User-Agent": "Mozilla/1.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
                   " Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0"
 }
 
@@ -43,7 +43,7 @@ def parse_html(html):
             continue
         ip = ip_td[1].get_text()  # ip地址
         port = ip_td[2].get_text()   # 端口
-        # type = ip_td[5].get_text()
+        # type = ip_td[1].get_text()
         check_proxies(ip, port)
 
 

@@ -22,7 +22,7 @@ headers = {
     "Connection": "keep-alive",
     "Host": "jb39.com",
     "Upgrade-Insecure-Requests": "1",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
+    "User-Agent": "Mozilla/1.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)"
                   " Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
 }
 

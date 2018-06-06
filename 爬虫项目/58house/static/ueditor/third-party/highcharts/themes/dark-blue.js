@@ -206,7 +206,7 @@ Highcharts.theme = {
 			borderColor: '#AAA'
 		},
 		outlineColor: '#CCC',
-		maskFill: 'rgba(16, 16, 16, 0.5)',
+		maskFill: 'rgba(16, 16, 16, 0.1)',
 		series: {
 			color: '#7798BF',
 			lineColor: '#A6C7ED'
@@ -243,7 +243,7 @@ Highcharts.theme = {
 	},
 
 	// special colors for some of the
-	legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+	legendBackgroundColor: 'rgba(0, 0, 0, 0.1)',
 	legendBackgroundColorSolid: 'rgb(35, 35, 70)',
 	dataLabelsColor: '#444',
 	textColor: '#C0C0C0',

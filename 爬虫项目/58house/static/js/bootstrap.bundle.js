@@ -3037,7 +3037,7 @@ function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
     var mergeWithPrevious = false;
     return op
     // This aggregates any `+` or `-` sign that aren't considered operators
-    // e.g.: 10 + +5 => [10, +, +5]
+    // e.g.: 10 + +1 => [10, +, +1]
     .reduce(function (a, b) {
       if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
         a[a.length - 1] = b;
@@ -3380,7 +3380,7 @@ var modifiers = {
      */
     priority: ['left', 'right', 'top', 'bottom'],
     /**
-     * @prop {number} padding=5
+     * @prop {number} padding=1
      * Amount of pixel used to define a minimum distance between the boundaries
      * and the popper this makes sure the popper has always a little padding
      * between the edges of its container
@@ -3459,7 +3459,7 @@ var modifiers = {
      */
     behavior: 'flip',
     /**
-     * @prop {number} padding=5
+     * @prop {number} padding=1
      * The popper will flip if it hits the edges of the `boundariesElement`
      */
     padding: 5,

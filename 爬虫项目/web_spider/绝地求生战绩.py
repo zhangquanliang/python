@@ -12,7 +12,7 @@ def get_user_zhanji(user_name):
     driver = webdriver.PhantomJS(executable_path=r'D:\C Git\D project\zhangql\util_zql\phantomjs.exe')
     driver.get(url)
     time.sleep(0.5)
-    driver.find_element_by_xpath('/html/body/div[3]/div/div[4]/div[3]/div[1]/div/div[2]/div[2]/li[1]/div[5]').click()
+    driver.find_element_by_xpath('/html/body/div[3]/div/div[4]/div[3]/div[1]/div/div[2]/div[2]/li[1]/div[1]').click()
     time.sleep(0.5)
 
     html = driver.page_source

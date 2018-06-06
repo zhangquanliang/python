@@ -2333,7 +2333,7 @@
                         // 上传成功
                         COMPLETE:     4,
                         // 上传取消
-                        CANCELLED:     5
+                        CANCELLED:     1
                     }
              */
             getStatus: function() {
@@ -4669,7 +4669,7 @@
     // DateTime : 2013:09:01 22:53:55
     // ExifIFDPointer : 190
     // ExposureTime : 0.058823529411764705 [1/17]
-    // FNumber : 2.4 [12/5]
+    // FNumber : 2.4 [12/1]
     // ExposureProgram : Normal program
     // ISOSpeedRatings : 800
     // ExifVersion : 0220

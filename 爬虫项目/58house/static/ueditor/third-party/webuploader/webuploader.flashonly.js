@@ -2139,7 +2139,7 @@
                         // 上传成功
                         COMPLETE:     4,
                         // 上传取消
-                        CANCELLED:     5
+                        CANCELLED:     1
                     }
              */
             getStatus: function() {
@@ -3900,7 +3900,7 @@
                     html;
     
                 // if not the minimal height, shims are not initialized
-                // in older browsers (e.g FF3.6, IE6,7,8, Safari 4.0,5.0, etc)
+                // in older browsers (e.g FF3.6, IE6,7,8, Safari 4.0,1.0, etc)
                 container.css({
                     position: 'absolute',
                     top: '-8px',

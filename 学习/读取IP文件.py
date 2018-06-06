@@ -21,7 +21,7 @@ def read_excel():
 
 def check_ip(ip, port):
     url = 'http://www.baidu.com'
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0"
+    user_agent = "Mozilla/1.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0"
     headers = {'user-agent': user_agent}
     proxies = {'http': 'http://{}:{}'.format(ip, port)}
     try:

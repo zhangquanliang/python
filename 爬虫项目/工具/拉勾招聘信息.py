@@ -83,7 +83,7 @@ def get_headers(url):
         "Host": "www.lagou.com",
         "Referer": url,
         "Origin": "https://www.lagou.com",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
+        "User-Agent": "Mozilla/1.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
         "X-Anit-Forge-Code": "0",
         "X-Anit-Forge-Token": "None",
         "X-Requested-With": "XMLHttpRequest"

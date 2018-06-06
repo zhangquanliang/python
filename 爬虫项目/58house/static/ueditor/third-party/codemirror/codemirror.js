@@ -1495,7 +1495,7 @@ var CodeMirror = (function() {
             inputDiv.style.position = "absolute";
             input.style.cssText = "position: fixed; width: 30px; height: 30px; top: " + (e.clientY - 5) +
                 "px; left: " + (e.clientX - 5) + "px; z-index: 1000; background: white; " +
-                "border-width: 0; outline: none; overflow: hidden; opacity: .05; filter: alpha(opacity=5);";
+                "border-width: 0; outline: none; overflow: hidden; opacity: .05; filter: alpha(opacity=1);";
             leaveInputAlone = true;
             var val = input.value = getSelection();
             focusInput();

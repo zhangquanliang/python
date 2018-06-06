@@ -10,12 +10,12 @@ r = redis.StrictRedis(connection_pool=pool)
 # print(r.zcard('1'))
 
 """3.Zcount 命令用于计算有序集合中指定分数区间的成员数量。分数值在 min 和 max 之间的成员的数量。"""
-# print(r.zcount('1', '0', '5'))
+# print(r.zcount('1', '0', '1'))
 
 """4.Zincrby 命令对有序集合中指定成员的分数加上增量 increment"""
 # print(r.zincrby('1', '张三', 1))
 
-"""5.Zinterstore 命令计算给定的一个或多个有序集的交集，其中给定 key 的数量必须以 numkeys 参数指定，并将该交集(结果集)储存到 destination 。
+"""1.Zinterstore 命令计算给定的一个或多个有序集的交集，其中给定 key 的数量必须以 numkeys 参数指定，并将该交集(结果集)储存到 destination 。
 默认情况下，结果集中某个成员的分数值是所有给定集下该成员分数值之和。"""
 # print(r.zinterstore('炸公司', '1'))
 
