@@ -1,0 +1,12 @@
+1.去mysql数据库中执行esczj.sql文件中的sql
+
+2.数据库连接
+  修改setting中的数据库连接配置
+   MYSQL_HOST 连接的IP
+   MYSQL_DBNAME 连接的数据库（第一步在的数据库中）
+   MYSQL_USER  用户名
+   MYSQL_PASSWORD 密码
+
+3.IP池使用
+  修改setting中的IPPOOL文件，增加有效的IP，格式如里面所示
+  取消setting中的59行代码注释
