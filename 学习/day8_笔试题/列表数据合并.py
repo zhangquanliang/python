@@ -13,5 +13,6 @@ for j in list2:
     list3.append(j)
 b = sorted(set(list3))
 print(b)
-
-print(list1[10:])
+a = ['1', '2', '3', '4', '5', '6']
+print(''.join(a))
+print(sorted(a))

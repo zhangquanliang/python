@@ -8,4 +8,6 @@ import re
 
 str1 = "<abc>aaa</abc>"
 a = re.match('>', str1)
+b = re.search('>(.*)', str1)
 print(a)
+print(b)
