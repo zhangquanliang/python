@@ -4,7 +4,7 @@ Title = 全书网全站小说下载
 Date = 20180423
 """
 import scrapy
-from ..items import DemoItem
+from scrapy项目.demo.demo.items import DemoItem
 
 
 class BaiduSpider(scrapy.Spider):
@@ -13,9 +13,10 @@ class BaiduSpider(scrapy.Spider):
     start_urls = ['http://www.quanshuwang.com/']
 
     def parse(self, response):
-        novel_type_url_list = response.xpath("//ul[@class='channel-nav-list']/li/a/@href").extract()  # 获取到不同类型的小说地址
-        for novel_type_url in novel_type_url_list:
-            yield scrapy.Request(novel_type_url, callback=self.parse_novel_type_url)
+        print(response.text)
+        # novel_type_url_list = response.xpath("//ul[@class='channel-nav-list']/li/a/@href").extract()  # 获取到不同类型的小说地址
+        # for novel_type_url in novel_type_url_list:
+        #     yield scrapy.Request(novel_type_url, callback=self.parse_novel_type_url)
 
     # 解析不同类型的所有小说
     def parse_novel_type_url(self, response):
