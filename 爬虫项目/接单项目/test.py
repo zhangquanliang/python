@@ -2,12 +2,17 @@
 """
 author = zhangql
 """
+import random
+import time
 import requests
-import urllib.parse
-lista = {'中文': '121', '文章': '123'}
-b = urllib.parse.urlencode(lista)
-url = 'https://www.baidu.com?{}'.format(b)
-print(url)
-a = requests.get(url)
-print(a.status_code)
-print(a.url)
+from fake_useragent import FakeUserAgent
+
+
+fk = FakeUserAgent()
+for i in range(10):
+    try:
+        ua = fk.random
+        print(ua)
+    except:
+        print('1111')
+        pass
