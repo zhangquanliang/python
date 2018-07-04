@@ -13,7 +13,7 @@ from config_d import mysql_tools, headers_list   # 从配置文件中导入数�
 
 # 1 登陆功能
 def login():
-    driver = webdriver.PhantomJS(executable_path=r'D:\C Git\D project\zhangql\爬虫项目\接单项目\5\phantomjs.exe')
+    driver = webdriver.Ie(executable_path=r'D:\C Git\D project\zhangql\util_zql\IEDriverServer(zql).exe')
     login_url = 'https://www.douban.com/accounts/login?source=movie'
     driver.get(login_url)
     # 随机等待0-1秒
@@ -21,12 +21,12 @@ def login():
 
     # 清空用户名输入框，并输入自己的账号
     driver.find_element_by_id('email').clear()
-    driver.find_element_by_id('email').send_keys('user_name')      # 用户名
+    driver.find_element_by_id('email').send_keys('15179833772')      # 用户名
     time.sleep(0.5)
 
     # 清空密码输入框，并输入自己的密码
     driver.find_element_by_id('password').clear()
-    driver.find_element_by_id('password').send_keys('password')    # 密码
+    driver.find_element_by_id('password').send_keys('ZQL131415..')    # 密码
     time.sleep(0.5)
 
     # 点击登陆按钮，实现登陆功能
@@ -35,13 +35,20 @@ def login():
     time.sleep(random.randint(2, 5))
     # 判断网页地址是否跳转，跳转代表登陆成功，否则失败
     if login_url != driver.current_url:
+        print('222222')
+        driver.get('https://movie.douban.com/explore#!type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0')
+        time.sleep(0.5)
+        cookies = driver.get_cookies()
+        cookie = ""
+        for cookie_ in cookies:
+            cookie = "%s;%s=%s" % (cookie, cookie_["name"], cookie_["value"])
         print('登陆成功..')
         driver.quit()
-        return True
+        return True, cookie
     else:
         print('登陆失败, 重新登陆！')
         driver.quit()
-        return False
+        return False, ''
 
 
 # 开启线程
@@ -101,6 +108,9 @@ def parse_json(json_str):
 
 
 if __name__ == '__main__':
-    # if login():   # 登陆接口，如需要登陆，取消注释，去修改里面的用户名，密码即可
+    # issuccess, cookie = login()
+    # if issuccess:   # 登陆接口，如需要登陆，取消注释，去修改里面的用户名，密码即可
     if 1:     # 不需要登陆，就直接改成if 1，同样可以采集数据。
         start_process()
+    else:
+        print('登录失败...')

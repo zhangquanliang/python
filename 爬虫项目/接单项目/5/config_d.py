@@ -3,6 +3,7 @@
 author = zhangql
 """
 import pymysql
+import cx_Oracle
 
 db_setting = {
     'host': 'localhost',   # IP地址，本机为localhost
@@ -24,6 +25,16 @@ def mysql_tools():
     charset=db_setting['charset'],     # 默认连接编码
     use_unicode=db_setting['use_unicode'])
     return connect.cursor(), connect
+
+
+def oracle_tools():
+    connect = cx_Oracle.connect('tcmp/tcmp@192.168.1.7:1521/orcl')  # 连接数据库
+    # c = connect.cursor()  # 获取cursor
+    # x = c.execute(sql)  # 使用cursor进行各种操作
+    # res = x.fetchall()
+    # c.close()  # 关闭cursor
+    # conn.close()  # 关闭连接
+    return connect.corsor(), connect
 
 
 # 用户代理池
