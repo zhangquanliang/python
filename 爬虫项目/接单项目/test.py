@@ -8,11 +8,7 @@ import requests
 from fake_useragent import FakeUserAgent
 
 
-fk = FakeUserAgent()
-for i in range(10):
-    try:
-        ua = fk.random
-        print(ua)
-    except:
-        print('1111')
-        pass
+if '1223131':
+    print('11111')
+else:
+    print('12222')

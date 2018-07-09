@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import socket
+from urllib.parse import unquote, quote
 
-print(socket.gethostname())
 
-from os import popen
-a = popen('hostname').read()
+a = quote('张三')
 print(a)
+b = unquote(a)
+print(b)
