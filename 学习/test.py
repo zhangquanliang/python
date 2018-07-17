@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+from selenium import webdriver
+import time
+from selenium.webdriver.support.ui import WebDriverWait
 
-import socket
-from urllib.parse import unquote, quote
+drive = webdriver.Ie(executable_path=r'D:\C Git\D project\zhangql\util_zql\IEDriverServer(zql).exe')
+drive.maximize_window()
+drive.get('https://www.baidu.com')
 
-
-a = quote('张三')
-print(a)
-b = unquote(a)
-print(b)
+drive.set_script_timeout(12)
+drive.find_element_by_id("su").click()
+drive.quit()

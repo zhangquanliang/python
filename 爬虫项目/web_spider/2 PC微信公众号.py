@@ -3,7 +3,6 @@
 Title = 搜狗微信公众号
 Date = 2018-02-02
 """
-import pdfkit
 import requests
 import re
 import json
@@ -14,7 +13,10 @@ class SGGZH:
 
     def __init__(self):
         self.r = requests.session()
-        self.ua = fake_useragent.UserAgent()
+        try:
+            self.ua = fake_useragent.UserAgent()
+        except:
+            pass
         self.timeout = 5
         self.headers = {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
