@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-import time
-from selenium.webdriver.support.ui import WebDriverWait
 
-drive = webdriver.Ie(executable_path=r'D:\C Git\D project\zhangql\util_zql\IEDriverServer(zql).exe')
-drive.maximize_window()
-drive.get('https://www.baidu.com')
+import common
+import os
 
-drive.set_script_timeout(12)
-drive.find_element_by_id("su").click()
-drive.quit()
+import urllib.parse
+from collections import Iterable
+from functools import reduce
+import functools
+__author__ = '张全亮'
+
+a = int('100011', base=2)
+print(a)

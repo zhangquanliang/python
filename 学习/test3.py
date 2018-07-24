@@ -8,4 +8,4 @@ def s(a, b, c):
     print(a, b, c)
 
 
-s(1, 2)
+# s(1, 2, 3)
