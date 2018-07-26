@@ -1,16 +1,8 @@
-# -*- coding: utf-8 -*-
-
-import common
-import os
-
-import urllib.parse
-from collections import Iterable
-from functools import reduce
-import functools
+# -*- coding:utf-8 -*-
 __author__ = '张全亮'
 
 
-def yanghui(n, yanghui_list=[[1], [1, 1]]):
+def gen_yanghui(n, yanghui_list = [[1], [1, 1]]):
     if n < 2:
         return yanghui_list[n]
     else:
@@ -21,7 +13,7 @@ def yanghui(n, yanghui_list=[[1], [1, 1]]):
                 tmp_list.append(yanghui_list[idx][x] + yanghui_list[idx][x+1])
             tmp_list.append(1)
             yanghui_list.append(tmp_list)
+        # print "yang:", yanghui_list
     return yanghui_list[n]
 
-
-print(yanghui(3))
+print(gen_yanghui(3))
