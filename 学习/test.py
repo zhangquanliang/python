@@ -8,7 +8,7 @@ from collections import Iterable
 from functools import reduce
 import functools
 __author__ = '张全亮'
-
+11111111111
 
 def yanghui(n, yanghui_list=[[1], [1, 1]]):
     if n < 2:
