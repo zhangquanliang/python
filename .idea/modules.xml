@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../A Python/pyweb/django/.idea/django.iml" filepath="$PROJECT_DIR$/../../A Python/pyweb/django/.idea/django.iml" />
       <module fileurl="file://$PROJECT_DIR$/../huarun/.idea/huarun.iml" filepath="$PROJECT_DIR$/../huarun/.idea/huarun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../A Python/pyweb/django/mydemo/.idea/mydemo.iml" filepath="$PROJECT_DIR$/../../A Python/pyweb/django/mydemo/.idea/mydemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../A Python/pyweb/django/mysite/.idea/mysite.iml" filepath="$PROJECT_DIR$/../../A Python/pyweb/django/mysite/.idea/mysite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../A Python/pyweb/django/mysity/.idea/mysity.iml" filepath="$PROJECT_DIR$/../../A Python/pyweb/django/mysity/.idea/mysity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../A Python/pyweb/django/mytest/.idea/mytest.iml" filepath="$PROJECT_DIR$/../../A Python/pyweb/django/mytest/.idea/mytest.iml" />
       <module fileurl="file://$PROJECT_DIR$/../project/.idea/project.iml" filepath="$PROJECT_DIR$/../project/.idea/project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/zhangql.iml" filepath="$PROJECT_DIR$/.idea/zhangql.iml" />
     </modules>
