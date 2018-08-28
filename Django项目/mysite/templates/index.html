@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>主页面</title>
+</head>
+<script type="application/javascript">
+
+</script>
+<body>
+    <table>
+       <tr>
+           <td>文章ID</td>
+           <td>标题</td>
+           <td>内容</td>
+           <td>发布时间</td>
+       </tr>
+        {% for blog in blog_index %}
+                <tr>
+                    <td>{{ blog.id }}</td>
+                    <td>{{ blog.title }}</td>
+                    <td>{{ blog.body }}</td>
+                    <td>{{ blog.created_time }}</td>
+                </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
