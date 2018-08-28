@@ -10,18 +10,6 @@
       <change beforePath="$PROJECT_DIR$/../../../huarun/bank/jsb/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../huarun/bank/jsb/login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../huarun/bank/jsb/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../huarun/bank/jsb/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../huarun/bank/jsb/trade.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../huarun/bank/jsb/trade.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/zhangql.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/zhangql.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Django项目/.idea/Django项目.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/Activate.ps1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/activate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/activate.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/deactivate.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/python.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/python3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/python36.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/Scripts/pythonw.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../venv/pyvenv.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../爬虫项目/接单项目/电商网站/拼多多.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../爬虫项目/接单项目/电商网站/拼多多.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +92,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="json" value="4" />
-          <entry key="py" value="3290" />
+          <entry key="py" value="3291" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
@@ -112,7 +100,7 @@
         <counts>
           <entry key="JSON" value="4" />
           <entry key="PLAIN_TEXT" value="12" />
-          <entry key="Python" value="3287" />
+          <entry key="Python" value="3288" />
           <entry key="SQL" value="3" />
         </counts>
       </usages-collector>
@@ -123,11 +111,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pdd_status.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="123" column="15" lean-forward="true" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
+            <state relative-caret-position="25">
+              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
               <folding>
                 <element signature="e#42#57#0" expanded="true" />
-                <marker date="1535424305707" expanded="true" signature="2426:4588" ph="..." />
+                <marker date="1535428088032" expanded="true" signature="2426:4588" ph="..." />
               </folding>
             </state>
           </provider>
@@ -701,11 +689,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pdd_status.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="123" column="15" lean-forward="true" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
+        <state relative-caret-position="25">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
           <folding>
             <element signature="e#42#57#0" expanded="true" />
-            <marker date="1535424305707" expanded="true" signature="2426:4588" ph="..." />
+            <marker date="1535428088032" expanded="true" signature="2426:4588" ph="..." />
           </folding>
         </state>
       </provider>

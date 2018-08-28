@@ -4,10 +4,12 @@ import requests
 import urllib3
 import hashlib
 from multiprocessing.dummy import Pool
+
 urllib3.disable_warnings()
 import re, datetime, time, json
 from logger import Logger
 from mysql_db import db_query, db_insert
+
 logger = Logger()
 
 
