@@ -51,7 +51,7 @@ def pay():
         pdduid = form_data['pdduid']  # 登陆的手机号
         notifyurl = form_data['notifyurl']
         order_number = int(form_data['order_number'])
-        key = 'zhangql'  # 签名认证的key
+        key = 'nLSm8fdKCY6ZeysRjrzaHUgQXMp2vlJd'  # 签名认证的key
         a = 'accesstoken={}&amount={}&goods_url={}&order_number={}&orderno={}&pdduid={}&key={}'. \
             format(accesstoken, amount, goods_url,  order_number, orderno,pdduid, key)
         hl = hashlib.md5()

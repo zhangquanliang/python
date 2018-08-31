@@ -55,8 +55,8 @@ def check(result):
             sql = "update order_pdd set status='{}', update_time='{}' where order_sn='{}'".format('待发货', update_time,
                                                                                                   q_order_sn)
             db_insert(sql)
-            key = 'zhangql'
-            a = 'amount={}&order_number={}&orderno={}&status=1&key={}'.format(amount, order_number, orderno, key)
+            key = 'nLSm8fdKCY6ZeysRjrzaHUgQXMp2vlJd'
+            a = 'amount={}&code=1&order_number={}&orderno={}&status=1&key={}'.format(amount, order_number, orderno, key)
             hl = hashlib.md5()
             hl.update(str(a).encode('utf-8'))
             encrypt = str(hl.hexdigest()).upper()

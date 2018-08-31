@@ -105,10 +105,10 @@ def check(result):
 
 def main():
     yesterday = datetime.date.today() + datetime.timedelta(-1)
-    # query_sql = "select order_sn, pdduid, accesstoken, goods_id from order_pdd" \
-    #             " where status='待发货' and is_query=1 and update_time like '{} %%'".format(yesterday)
     query_sql = "select order_sn, pdduid, accesstoken, goods_id from order_pdd" \
-                " where status='待发货' and is_query=1 "
+                " where status='待发货' and is_query=1 and update_time like '{} %%'".format(yesterday)
+    # query_sql = "select order_sn, pdduid, accesstoken, goods_id from order_pdd" \
+    #             " where status='待发货' and is_query=1 "
     result = db_query(query_sql)
     logger.log('INFO', '查询数据库符合条件的结果, 共[{}]个'.format(len(result)), 'receipt', 'Admin')
     if len(result) == 0:

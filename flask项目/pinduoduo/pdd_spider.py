@@ -220,9 +220,9 @@ def main(pdduid, accesstoken, goods_url, amount, order_number):
 
 
 if __name__ == '__main__':
-    goods_url = 'http://mobile.yangkeduo.com/goods.html?goods_id=9962830&is_spike=0&page_el_sn=99862&refer_page_name=index&refer_page_id=10002_1534904453632_CTDgPWCMNe&refer_page_sn=10002&refer_page_el_sn=99862'
-    pdduid = 18443241194
-    accesstoken = '7MET6NIDCXKZHRWLOUSQBSKPSK7JE6RT5U7VRPEY77WODRFLSQQQ10264ae'
-    amount = 19.8
-    order_number = 2
+    goods_url = 'https://mobile.yangkeduo.com/goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message'
+    pdduid = 15179833772
+    accesstoken = 'RLNMEXUQAWCNNWY4SK4RNYVGEUUR4N6N4LSW35WNKRU5BGYZ5E2Q101a825'
+    amount = 5
+    order_number = 1
     main(pdduid, accesstoken, goods_url, amount, order_number)
