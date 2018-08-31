@@ -1,5 +1,19 @@
 # -*- coding:utf-8 -*-
 __author__ = '张全亮'
+import re
+import random
+import urllib3
+import requests
+import urllib.parse
+import time
+
+urllib3.disable_warnings()
+req = requests.session()
+import pymysql
+from logger import Logger
+from bs4 import BeautifulSoup
+
+pymysql.install_as_MySQLdb()
 
 # TODO 需要提供goods_url(商品地址), pdduid(拼多多用户ID,可为手机号), accesstoken(websocket加载的token)
 
@@ -14,64 +28,12 @@ pdduid  = 拼多多用户ID
 order_sn = 订单编号
 """
 
-import re
-import random
-import urllib3
-import requests
-import urllib.parse
-import time
-
-urllib3.disable_warnings()
-req = requests.session()
-import pymysql
-import json
-import datetime
-from logger import Logger
-
-pymysql.install_as_MySQLdb()
-
 logger = Logger()
 
 headers = {
     'Accept': 'text/html, application/xhtml+xml, application/xml; q=0.9, */*; q=0.8',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0',
 }
-
-"""
-获取商品需要的参数
-input = 商品地址(goods_url), 登陆状态下的Cookie(cookie)
-output = 分组排序ID(group_id), 商品ID(goods_id), 商品的属性ID(sku_id)如衣服的尺码，颜色
-"""
-
-
-def get_goods_id(url, cookie=None):
-    res = requests.get(url, headers=headers, verify=False)
-    html = res.text
-    if cookie is not None:
-        headers['Cookie'] = cookie
-    sku_id = random.choice(re.findall('"skuID":(.*?),', html))
-    group_id = random.choice(re.findall('"groupID":(.*?),', html))
-    goods_id = random.choice(re.findall('"goodsID":"(.*?)",', html))
-    return sku_id, group_id, goods_id
-
-
-"""
-获取需要的地址ID
-input = 分组排序ID(group_id), 商品ID(goods_id), 商品的属性ID(sku_id)如衣服的尺码，颜色 购买数量(goods_number)
-output = 地址ID(addressId)
-"""
-
-
-def get_address_id(sku_id, group_id, goods_id, goods_number=1):
-    url = 'https://mobile.yangkeduo.com/order_checkout.html?sku_id={}&group_id={}&goods_id={}&goods_number={}'.format(
-        sku_id, group_id, goods_id, goods_number)
-    res = requests.get(url, headers=headers, verify=False)
-    if 'window.isUseHttps= false' in res.text or 'window.isUseHttps' not in res.text:
-        return '获取地区ID错误, 请更新AccessToken后重试..'
-    html = res.text
-    addressId = re.findall('"addressId":(.*?),', html)[0]
-    return addressId
-
 
 """
 input = 分组排序ID(group_id), 商品ID(goods_id), 商品属性ID(sku_id), 用户ID(pdduid), 
@@ -110,12 +72,10 @@ def pay(alipay, address_id, pdduid, accesstoken, sku_id, group_id, goods_id):
         elif 'error_code' in res_json and i == 2:
             return False, 'access_token错误, 请更新.'
         else:
-            print('重试第{}次'.format(i + 1))
             continue
-    print('订单编号: {}'.format(order_sn))
 
     if alipay:
-        print('支付宝支付...')
+        logger.log('INFO', '订单: [{}], 支付方式: 支付宝支付'.format(order_sn), 'spider', pdduid)
         url2 = 'https://api.pinduoduo.com/order/prepay?pdduid={}'.format(pdduid)
         t_data = {
             "order_sn": order_sn,
@@ -133,7 +93,7 @@ def pay(alipay, address_id, pdduid, accesstoken, sku_id, group_id, goods_id):
         response = requests.get(dingdan_url, headers=headers, verify=False)
         pay_url = response.url
     else:
-        print('微信支付...')
+        logger.log('INFO', '订单: [{}], 支付方式: 微信支付'.format(order_sn), 'spider', pdduid)
         url2 = 'https://api.pinduoduo.com/order/prepay?pdduid={}'.format(pdduid)
         t_data = {
             "order_sn": order_sn,
@@ -149,6 +109,52 @@ def pay(alipay, address_id, pdduid, accesstoken, sku_id, group_id, goods_id):
         res2 = requests.get(nweb_url, headers=headers, verify=False)
         pay_url = re.findall('var url="(.*?)";', res2.text, re.I | re.S)[0]
     return order_sn, pay_url
+
+
+"""
+获取需要的地址ID
+input = 分组排序ID(group_id), 商品ID(goods_id), 商品的属性ID(sku_id)如衣服的尺码，颜色 购买数量(goods_number)
+output = 地址ID(addressId)
+"""
+
+
+def get_address_id(sku_id, group_id, goods_id, amount, goods_number=1):
+    url = 'https://mobile.yangkeduo.com/order_checkout.html?sku_id={}&group_id={}&goods_id={}&goods_number={}'.format(
+        sku_id, group_id, goods_id, goods_number)
+    res = requests.get(url, headers=headers, verify=False)
+    if 'window.isUseHttps= false' in res.text or 'window.isUseHttps' not in res.text:
+        return '获取地区ID错误, 请更新AccessToken后重试..'
+    html = res.text
+
+    addressId = re.findall('"addressId":(.*?),', html)[0]
+    soup = BeautifulSoup(html, 'html.parser')
+    price = soup.find('span', class_='oc-final-amount').get_text().replace('￥', '').strip()
+    if float(price) == float(amount):
+        return addressId
+    else:
+        logger.log('DEBUG', '订单金额不一致, 给定金额:{}，实际支付金额:{}'.format(amount, price), 'spider', pdduid)
+        return '订单金额不一致, 给定金额:{}，实际支付金额:{}'.format(amount, price)
+
+
+"""
+获取商品需要的参数
+input = 商品地址(goods_url), 登陆状态下的Cookie(cookie)
+output = 分组排序ID(group_id), 商品ID(goods_id), 商品的属性ID(sku_id)如衣服的尺码，颜色
+"""
+
+
+def get_goods_id(url, cookie=None):
+    res = requests.get(url, headers=headers, verify=False)
+    html = res.text
+    if cookie is not None:
+        headers['Cookie'] = cookie
+    # sku_id = random.choice(re.findall('"skuID":(.*?),', html))
+    # group_id = random.choice(re.findall('"groupID":(.*?),', html))
+    # goods_id = random.choice(re.findall('"goodsID":"(.*?)",', html))
+    sku_id = re.findall('"skuID":(.*?),', html)[0]
+    group_id = re.findall('"groupID":(.*?),', html)[0]
+    goods_id = re.findall('"goodsID":"(.*?)",', html)[0]
+    return sku_id, group_id, goods_id
 
 
 # 获取增加收货地址
@@ -168,20 +174,23 @@ def get_shipping_address(pdduid, accesstoken):
         }
         add_response = requests.post(url, headers=headers, json=add_data, verify=False)
         if 'server_time' in add_response.json():
-            print('新增收货地址成功')
+            logger.log('INFO', '新增收货地址成功', 'spider', pdduid)
             return True, '新增收货地址成功'
         else:
-            print('新增收货地址失败')
+            logger.log('ERROR', '新增收货地址失败', 'spider', pdduid)
             return False, '新增收货地址失败'
     else:
         if 'error_code' in response.json():
-            print('access_token错误，请更新.')
+            logger.log('ERROR', 'access_token错误，请更新.', 'spider', pdduid)
             return False, 'access_token错误，请更新.'
-        print('已存在收货地址')
         return True, '已存在收货地址'
 
 
-def main(pdduid, accesstoken, goods_url):
+"""拼多多下单入口函数"""
+
+
+def main(pdduid, accesstoken, goods_url, amount, order_number):
+    order_number = int(order_number)
     # TODO goods_url, accesstoken, pdduid
     # 是否支付宝支付， True为是
     alipay = False
@@ -190,28 +199,30 @@ def main(pdduid, accesstoken, goods_url):
     """判断收货地址，没有则增加"""
     is_add, msg = get_shipping_address(pdduid, accesstoken)
     if is_add is False:
-        return {'code': 0, 'pay_url': '', 'order_sn': '', 'error_msg': msg}
+        return {'code': 0, 'pay_url': '', 'order_sn': '', 'msg': msg}
 
     """获取商品信息"""
     sku_id, group_id, goods_id = get_goods_id(goods_url, cookie)
 
     """获取地区ID"""
-    address_id = get_address_id(sku_id, group_id, goods_id)
-    if '错误' not in address_id:
+    address_id = get_address_id(sku_id, group_id, goods_id, amount, order_number)
+    if '错误' not in address_id and '订单金额' not in address_id:
         order_sn, pay_url = pay(alipay, address_id, pdduid, accesstoken, sku_id, group_id, goods_id)
-        print('付款链接: {}'.format(pay_url))
         if '错误' in pay_url:
-            return {'code': 0, 'pay_url': '', 'order_sn': '', 'error_msg': pay_url}
-        logger.log('INFO', '支付链接返回正常', 'spider', pdduid)
-        return {'code': 1, 'pay_url': pay_url, 'order_sn': order_sn, 'error_msg': ''}
+            return {'code': 0, 'pay_url': '', 'order_sn': '', 'msg': pay_url, 'goods_id': 0}
+        logger.log('INFO', '订单编号: [{}],支付链接:{}'.format(order_sn, pay_url), 'spider', pdduid)
+        return {'code': 1, 'pay_url': pay_url, 'order_sn': order_sn, 'msg': '', 'goods_id': goods_id}
+    elif '订单金额不一致' in address_id:
+        return {'code': 0, 'pay_url': '', 'order_sn': '', 'msg': address_id, 'goods_id': 0}
     else:
         logger.log('ERROR', '未获取到地区ID, 更新accesstoken后重试', 'spider', pdduid)
-        print('程序结束, 未获取到地区ID, 更新accesstoken后重试...')
-        return {'code': 0, 'pay_url': '', 'order_sn': '', 'error_msg': address_id}
+        return {'code': 0, 'pay_url': '', 'order_sn': '', 'msg': address_id, 'goods_id': 0}
 
 
 if __name__ == '__main__':
     goods_url = 'http://mobile.yangkeduo.com/goods.html?goods_id=9962830&is_spike=0&page_el_sn=99862&refer_page_name=index&refer_page_id=10002_1534904453632_CTDgPWCMNe&refer_page_sn=10002&refer_page_el_sn=99862'
     pdduid = 18443241194
     accesstoken = '7MET6NIDCXKZHRWLOUSQBSKPSK7JE6RT5U7VRPEY77WODRFLSQQQ10264ae'
-    main(pdduid, accesstoken, goods_url)
+    amount = 19.8
+    order_number = 2
+    main(pdduid, accesstoken, goods_url, amount, order_number)

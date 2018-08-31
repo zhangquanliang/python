@@ -1,11 +1,11 @@
 {
   "mysql": {
     "db_type": "mysql",
-    "host": "localhost",
-    "db": "dianshang",
+    "host": "39.104.69.48",
+    "db": "xinxitong",
     "port": "3306",
     "username": "root",
-    "pwd": "zql9988"
+    "pwd": "123456"
   }
 }
 

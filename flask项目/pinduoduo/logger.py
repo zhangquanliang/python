@@ -63,4 +63,3 @@ class Logger(object):
 if __name__ == '__main__':
     l = Logger()
     l.log('INFO', 'Test', 'spider', '123')
-

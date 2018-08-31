@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../../Django项目/.idea/Django项目.iml" filepath="$PROJECT_DIR$/../../Django项目/.idea/Django项目.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../huarun/.idea/huarun.iml" filepath="$PROJECT_DIR$/../../../huarun/.idea/huarun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Django项目/myblog/.idea/myblog.iml" filepath="$PROJECT_DIR$/../../Django项目/myblog/.idea/myblog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Django项目/mypdd/.idea/mypdd.iml" filepath="$PROJECT_DIR$/../../Django项目/mypdd/.idea/mypdd.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pinduoduo.iml" filepath="$PROJECT_DIR$/.idea/pinduoduo.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../.idea/zhangql.iml" filepath="$PROJECT_DIR$/../../.idea/zhangql.iml" />
     </modules>

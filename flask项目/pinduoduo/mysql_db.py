@@ -14,8 +14,9 @@ logger = Logger()
 def db_insert(sql):
     conn = pool.connection()
     cursor = conn.cursor()
-    cursor.execute(sql)
     try:
+        print(sql)
+        cursor.execute(sql)
         conn.commit()
         logger.log("INFO", "数据插入, 更新", "数据库", "Admin")
     except Exception as ex:
@@ -46,5 +47,11 @@ def db_query(sql):
 
 
 if __name__ == '__main__':
-    sql = 'select * from order_pdd'
-    db_query(sql)
+    import datetime
+
+    yesterday = datetime.date.today() + datetime.timedelta(-1)
+    query_sql = "select order_sn, pdduid, accesstoken, notifyurl, orderno, amount, extends from order_pdd" \
+                " where status='待发货' and is_query=1 and update_time like '{} %%'".format(yesterday)
+    print(query_sql)
+    result = db_query(query_sql)
+    print(result)

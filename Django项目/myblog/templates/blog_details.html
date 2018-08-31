@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog.title }}</title>
+<style type="text/css">
+    .blog{
+        padding: 20px 0px;
+    }
+    .blog .info span{
+        padding-right: 10px;
+
+    }
+    .blog .summary{
+        padding-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="header">
+    <span><a href="{% url 'blog_get_detail' blog.id %}">{{ blog.title }}</a> </span>
+</div>
+
+<div class="content">
+    <div class="blog">
+        <div class="title">
+            <a href="#"><h2>{{ blog.title }}</h2></a>
+        </div>
+        <div class="info">
+            <span class="category" style="color:#ff9900 ;">{{ blog.category.name }}</span>
+            <span class="author" style="color: #4a86e8">{{ blog.author }}</span>
+            <span class="pub" style="color: #6aa84f">{{ blog.pub }}</span>
+        </div>
+        <div class="summary">
+            {{ blog.content }}
+        </div>
+        <div class="comment">
+            <div class="comment-diaplay" style="padding-top: 20px;">
+                <h3>评论</h3>
+                {% for comment in comments %}
+                 <div class="comment-field" style="padding-top: 10px;">
+                     {{ comment.name }}说:{{ comment.content }}
+                 </div>
+                {% endfor %}
+            </div>
+        <div class="comment-post" style="padding-top: 20px ;">
+            <h3>提交评论</h3>
+            <form action="{% url 'blog_get_detail' blog.id %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="input-field" style="padding-top: 10px;">
+                        {{ field.label }}:{{ field }}
+                    </div>
+                    <div class="error" style="color: red;">
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <button type="submit" style="margin-top:10px ">提交</button>
+                <input type="button" value="返回">
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

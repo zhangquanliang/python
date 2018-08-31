@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>我的博客</title>
+    <style type="text/css">
+        .blog{
+            padding: 20px 0px;
+        }
+        .blog .info span{
+            padding-right: 10px;
+        }
+        .blog .summary{
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1 align="center">我的博客</h1>
+</div>
+{% for blog in blogs %}
+<div align="center" class="blog">
+    <div class="title">
+        <a href="{% url 'blog_get_detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+    </div>
+    <div class="info">
+        <span class="category" style="color: #ff9900;">{{ blog.category.name }}</span>
+        <span class="author" style="color: #4a86e8;">{{ blog.author }}</span>
+        <span class="pub" style="color: #6aa84e">{{ blog.pub }}</span>
+    </div>
+    <div class="summary">
+        {{ blog.content | truncatechars:100 }}
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>

@@ -10,6 +10,9 @@
     <orderEntry type="module" module-name="Django项目" />
     <orderEntry type="module" module-name="huarun" />
     <orderEntry type="module" module-name="zhangql" />
+    <orderEntry type="module" module-name="myblog" />
+    <orderEntry type="module" module-name="zhangql" />
+    <orderEntry type="module" module-name="mypdd" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

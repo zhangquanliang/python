@@ -22,32 +22,86 @@ def check_pay(order_sn, pdduid, accesstoken):
     }
     url = 'https://mobile.yangkeduo.com/personal_order_result.html?page=1&size=10&keyWord={}'.format(order_sn)
     res = requests.get(url, headers=headers, verify=False)
-    # print(res.text)
+
     if 'window.isUseHttps= false' in res.text or 'window.isUseHttps' not in res.text:
-        print('查询订单[{}]错误'.format(order_sn))
         logger.log('ERROR', '查询订单[{}]错误'.format(order_sn), 'status', pdduid)
         return '查询订单[{}]错误'.format(order_sn)
     else:
         n_order_sn = re.findall('"order_sn":"(.*?)",', res.text)[0]
         if order_sn == n_order_sn:
             pay_status = re.findall('"order_status_desc":"(.*?)",', res.text)[0]
-            print('获取订单[{}]信息成功, 支付状态: {}'.format(n_order_sn, pay_status))
             logger.log('INFO', '获取订单[{}]信息成功, 支付状态: {}'.format(n_order_sn, pay_status), 'status', pdduid)
             return pay_status
         else:
-            print('查询订单[{}]错误, 请确认!'.format(order_sn))
             logger.log('ERROR', '查询订单[{}]错误'.format(order_sn), 'status', pdduid)
             return '查询订单[{}]错误, 请确认!'.format(order_sn)
 
 
+def check(result):
+    logger.log('INFO', '开始校验订单:{}支付状态'.format(result[0]), 'status', result[1])
+    for i in range(6):
+        q_order_sn = result[0]
+        pdduid = result[1]
+        accesstoken = result[2]
+        notifyurl = result[3]
+        orderno = result[4]
+        amount = result[5]
+        extends = result[6]
+        order_number = result[7]
+
+        status = check_pay(q_order_sn, pdduid, accesstoken)
+        if '待发货' in status or '拼团成功' in status or '待收货' in status:
+            update_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            sql = "update order_pdd set status='{}', update_time='{}' where order_sn='{}'".format('待发货', update_time,
+                                                                                                  q_order_sn)
+            db_insert(sql)
+            key = 'zhangql'
+            a = 'amount={}&order_number={}&orderno={}&status=1&key={}'.format(amount, order_number, orderno, key)
+            hl = hashlib.md5()
+            hl.update(str(a).encode('utf-8'))
+            encrypt = str(hl.hexdigest()).upper()
+
+            logger.log('INFO', '加密后的字符串: {}'.format(encrypt), 'status', pdduid)
+            data = {
+                "code": 1,
+                "msg": "",
+                "status": 1,
+                "orderno": orderno,
+                "order_number": order_number,
+                "amount": amount,
+                "extends": extends,
+                "sign": encrypt
+            }
+            for j in range(6):
+                response = requests.post(notifyurl, data=data, verify=False)
+                if response.json()['code'] == 1:
+                    logger.log('INFO', '订单[{}], 支付结果正常返回'.format(q_order_sn), 'status', pdduid)
+                    break
+                if j == 5:
+                    logger.log('ERROR', '订单[{}], 支付结果未正常返回'.format(q_order_sn), 'status', pdduid)
+                    break
+                time.sleep(300)
+                logger.log('INFO', '订单:{}在{}分钟内未正确回调'.format(q_order_sn, (j + 1) * 5), 'status', pdduid)
+            return
+        if i == 5:
+            update_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            sql = "update order_pdd set status='{}', is_query=0, update_time='{}' where order_sn='{}'".format(status,
+                                                                                                              update_time,
+                                                                                                              q_order_sn)
+            db_insert(sql)
+            logger.log('DEBUG', '订单[{}], 设定时间内,支付状态未改变,不在查询此订单'.format(q_order_sn), 'status', pdduid)
+            return
+        time.sleep(60)
+        logger.log('INFO', '在{}分钟内, 订单: [{}], 支付状态未改变.'.format(i + 1, q_order_sn), 'status', pdduid)
+
+
 def main():
-    query_sql = "select order_sn, pdduid, accesstoken, notifyurl, orderno, amount, extends from order_pdd" \
+    query_sql = "select order_sn, pdduid, accesstoken, notifyurl, orderno, amount, extends, order_number from order_pdd" \
                 " where status='待支付' and is_query=1 and u_id >= ((SELECT MAX(u_id) FROM order_pdd)-" \
                 "(SELECT MIN(u_id) FROM order_pdd)) * RAND() + (SELECT MIN(u_id) FROM order_pdd) LIMIT 20"
 
     result = db_query(query_sql)
-    print('查询数据库符合条件的结果, 共[{}]个'.format(len(result)))
-    logger.log('INFO', '查询数据库符合条件的结果, 共[{}]个'.format(len(result)), 'status', '')
+    logger.log('INFO', '查询数据库符合条件的结果, 共[{}]个'.format(len(result)), 'status', 'Admin')
     if len(result) == 0:
         return
     pool = Pool(processes=20)
@@ -57,70 +111,12 @@ def main():
     pool.join()
 
 
-def check(result):
-    for i in range(6):
-        print('判断6分钟内, 订单编号为[{}]的订单, 支付状态是否已更改.'.format(result[0]))
-        q_order_sn = result[0]
-        pdduid = result[1]
-        accesstoken = result[2]
-        notifyurl = result[3]
-        orderno = result[4]
-        amount = result[5]
-        extends = result[6]
-
-        status = check_pay(q_order_sn, pdduid, accesstoken)
-        if status != '待支付' and '错误' not in status:
-            update_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            sql = "update order_pdd set status='{}', is_query=0, update_time='{}'".format(status, update_time)
-            db_insert(sql)
-            key = 2347647824628
-            a = 'amount={}&orderno={}&status={}&key={}'. \
-                format(amount, orderno, status, key)
-            hl = hashlib.md5()
-            hl.update(str(a).encode('utf-8'))
-            encrypt = str(hl.hexdigest()).upper()
-
-            data = {
-                "code": 1,
-                "msg": "",
-                "status": 1,
-                "orderno": orderno,
-                "amount": amount,
-                "extends": extends,
-                "sign": encrypt
-            }
-            for j in range(6):
-                print('判断支付结果是否正常返回..')
-                response = requests.post(notifyurl, data=data)
-                if response.text == 'success':
-                    logger.log('INFO', '订单[{}], 支付结果正常返回'.format(q_order_sn), 'status', pdduid)
-                    break
-                if j == 5:
-                    logger.log('ERROR', '订单[{}], 支付结果未正常返回'.format(q_order_sn), 'status', pdduid)
-                    break
-                time.sleep(300)
-            return
-        if i == 5:
-            print('订单编号为[{}]订单, 6分钟内订单支付状态未改变,仍为待支付,不在查询该订单.'.format(q_order_sn))
-            update_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            sql = "update order_pdd set status='{}', is_query=0, update_time='{}'".format(status, update_time)
-            db_insert(sql)
-            logger.log('DEBUG', '订单[{}], 设定时间内,支付状态未更改.'.format(q_order_sn), 'status', pdduid)
-            return
-        print('等待一分钟后重新判断待支付订单是否支付...共等待6分钟')
-        time.sleep(60)
-
-
-def test():
-    order_sn = '180822-224630539190424'
-    pdduid = '15179833772'
-    accesstoken = 'N3NNUVW5BU6KXIK3PP6X44VO4X2MXE3ARUMZA6CBRAQQQ4SZXX6Q101a825'
-    check_pay(order_sn, pdduid, accesstoken)
-
-
 if __name__ == '__main__':
-    print('检测订单脚本启动...')
+    logger.log('INFO', '检测订单脚本启动...', 'status', 'Admin')
     while True:
-        main()
-        time.sleep(10)
-        # break
+        try:
+            main()
+        except:
+            logger.log('ERROR', '程序异常，重启.', 'status', 'Admin')
+            continue
+        time.sleep(30)
