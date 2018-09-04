@@ -7,7 +7,9 @@
       <module fileurl="file://$PROJECT_DIR$/../../Django项目/myblog/.idea/myblog.iml" filepath="$PROJECT_DIR$/../../Django项目/myblog/.idea/myblog.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../Django项目/mypdd/.idea/mypdd.iml" filepath="$PROJECT_DIR$/../../Django项目/mypdd/.idea/mypdd.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pinduoduo.iml" filepath="$PROJECT_DIR$/.idea/pinduoduo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../xlya/.idea/xlya.iml" filepath="$PROJECT_DIR$/../../../xlya/.idea/xlya.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../.idea/zhangql.iml" filepath="$PROJECT_DIR$/../../.idea/zhangql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../爬虫项目/接单项目/电商网站/.idea/电商网站.iml" filepath="$PROJECT_DIR$/../../爬虫项目/接单项目/电商网站/.idea/电商网站.iml" />
     </modules>
   </component>
 </project>

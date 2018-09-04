@@ -46,9 +46,10 @@ def parser_html(html, save_list, create_date):
         if len(save_list) == 50:
             break
         try:
-            commodity_img_url = "http:" + commodity_.find('img')['src']  # 图片地址
+            commodity_img_url = "http:" + commodity_.find('div', class_='p-img').find('img')['src']  # 图片地址
+            print(commodity_img_url)
         except:
-            commodity_img_url = "http:" + commodity_.find('img')['data-lazy-img']  # 图片地址
+            commodity_img_url = "http:" + commodity_.find('div', class_='p-img').find('img')['source-data-lazy-img']  # 图片地址
         save_list.append(commodity_)
         commodity_price = commodity_.find('div', class_='p-price').get_text().strip().replace('￥', '')  # 商品金额
         if commodity_price == '' or commodity_price is None:
@@ -59,8 +60,8 @@ def parser_html(html, save_list, create_date):
         commodity_url = commodity_.find('a', target="_blank")['href']  # 商品地址
         if 'https' not in commodity_url:
             commodity_url = "http:" + commodity_url
-        # print(commodity_name, commodity_price, commodity_url, commodity_pj,commodity_shop, commodity_img_url)
-        # print('-' * 100)
+        print(commodity_name, commodity_price, commodity_url, commodity_pj,commodity_shop, commodity_img_url)
+        print('-' * 100)
         if '笔记本' in commodity_name:
             sql = "insert into jd_bjb(commodity_name, commodity_price, commodity_url, commodity_pj," \
                   "commodity_shop, commodity_img_url, create_date) values('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (

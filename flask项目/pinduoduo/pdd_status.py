@@ -39,7 +39,7 @@ def check_pay(order_sn, pdduid, accesstoken):
 
 def check(result):
     logger.log('INFO', '开始校验订单:{}支付状态'.format(result[0]), 'status', result[1])
-    for i in range(6):
+    for i in range(11):
         q_order_sn = result[0]
         pdduid = result[1]
         accesstoken = result[2]
@@ -91,7 +91,7 @@ def check(result):
             db_insert(sql)
             logger.log('DEBUG', '订单[{}], 设定时间内,支付状态未改变,不在查询此订单'.format(q_order_sn), 'status', pdduid)
             return
-        time.sleep(60)
+        time.sleep(30)
         logger.log('INFO', '在{}分钟内, 订单: [{}], 支付状态未改变.'.format(i + 1, q_order_sn), 'status', pdduid)
 
 
@@ -119,4 +119,4 @@ if __name__ == '__main__':
         except:
             logger.log('ERROR', '程序异常，重启.', 'status', 'Admin')
             continue
-        time.sleep(30)
+        time.sleep(10)

@@ -1,0 +1,96 @@
+2018-09-03 16:26:53,671 - _internal.py:88 - werkzeug -  * Restarting with stat
+2018-09-03 16:26:53,671 - _internal.py:88 - werkzeug -  * Restarting with stat
+2018-09-03 16:26:55,822 - _internal.py:88 - werkzeug -  * Debugger is active!
+2018-09-03 16:26:55,822 - _internal.py:88 - werkzeug -  * Debugger is active!
+2018-09-03 16:26:55,827 - _internal.py:88 - werkzeug -  * Debugger PIN: 263-252-863
+2018-09-03 16:26:55,827 - _internal.py:88 - werkzeug -  * Debugger PIN: 263-252-863
+2018-09-03 16:26:55,835 - _internal.py:88 - werkzeug -  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+2018-09-03 16:26:55,835 - _internal.py:88 - werkzeug -  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+2018-09-03 16:27:27,465 - _internal.py:88 - werkzeug - 127.0.0.1 - - [03/Sep/2018 16:27:27] "GET / HTTP/1.1" 200 -
+2018-09-03 16:27:27,465 - _internal.py:88 - werkzeug - 127.0.0.1 - - [03/Sep/2018 16:27:27] "GET / HTTP/1.1" 200 -
+2018-09-03 16:27:27,581 - _internal.py:88 - werkzeug - 127.0.0.1 - - [03/Sep/2018 16:27:27] "GET / HTTP/1.1" 200 -
+2018-09-03 16:27:27,581 - _internal.py:88 - werkzeug - 127.0.0.1 - - [03/Sep/2018 16:27:27] "GET / HTTP/1.1" 200 -
+2018-09-03 16:28:39,221 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:28:39] "GET /favicon.ico HTTP/1.1" 404 -
+2018-09-03 16:28:39,221 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:28:39] "GET /favicon.ico HTTP/1.1" 404 -
+2018-09-03 16:28:39,283 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:28:39] "GET /api/pay HTTP/1.1" 200 -
+2018-09-03 16:28:39,283 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:28:39] "GET /api/pay HTTP/1.1" 200 -
+2018-09-03 16:28:49,833 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:28:49] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:28:49,833 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:28:49] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:29:11,218 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:29:11,218 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:29:11,388 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "GET /addresses?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:29:11,388 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "GET /addresses?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:29:11,391 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:29:11,391 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:29:11,633 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message HTTP/1.1" 200 None
+2018-09-03 16:29:11,633 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message HTTP/1.1" 200 None
+2018-09-03 16:29:11,637 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:29:11,637 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:29:11,805 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /order_checkout.html?sku_id=57068953297&group_id=4099812828&goods_id=2723075938&goods_number=2 HTTP/1.1" 200 None
+2018-09-03 16:29:11,805 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /order_checkout.html?sku_id=57068953297&group_id=4099812828&goods_id=2723075938&goods_number=2 HTTP/1.1" 200 None
+2018-09-03 16:29:12,043 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:29:12,043 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:29:12,237 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:29:12,237 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:29:12,277 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:29:12,277 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:29:12,581 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order/prepay?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:29:12,581 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order/prepay?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:29:12,586 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): wx.tenpay.com
+2018-09-03 16:29:12,586 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): wx.tenpay.com
+2018-09-03 16:29:12,788 - connectionpool.py:395 - urllib3.connectionpool - https://wx.tenpay.com:443 "GET /cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx03162911874279291c1450712172784976&package=3567283071 HTTP/1.1" 200 None
+2018-09-03 16:29:12,788 - connectionpool.py:395 - urllib3.connectionpool - https://wx.tenpay.com:443 "GET /cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx03162911874279291c1450712172784976&package=3567283071 HTTP/1.1" 200 None
+2018-09-03 16:29:12,989 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:29:12] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:29:12,989 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:29:12] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:32:03,463 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:32:03,463 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:32:03,617 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "GET /addresses?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:32:03,617 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "GET /addresses?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:32:03,619 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:32:03,619 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:32:03,945 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message HTTP/1.1" 200 None
+2018-09-03 16:32:03,945 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message HTTP/1.1" 200 None
+2018-09-03 16:32:03,948 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:32:03,948 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:32:04,177 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /order_checkout.html?sku_id=57068953297&group_id=4099812828&goods_id=2723075938&goods_number=2 HTTP/1.1" 200 None
+2018-09-03 16:32:04,177 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /order_checkout.html?sku_id=57068953297&group_id=4099812828&goods_id=2723075938&goods_number=2 HTTP/1.1" 200 None
+2018-09-03 16:32:04,444 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:32:04,444 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:32:04,644 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:32:04,644 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:32:04,647 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:32:04,647 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:32:04,955 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order/prepay?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:32:04,955 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order/prepay?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:32:04,957 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): wx.tenpay.com
+2018-09-03 16:32:04,957 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): wx.tenpay.com
+2018-09-03 16:32:05,116 - connectionpool.py:395 - urllib3.connectionpool - https://wx.tenpay.com:443 "GET /cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx03163204277948b7d10f532a2882517314&package=2480835710 HTTP/1.1" 200 None
+2018-09-03 16:32:05,116 - connectionpool.py:395 - urllib3.connectionpool - https://wx.tenpay.com:443 "GET /cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx03163204277948b7d10f532a2882517314&package=2480835710 HTTP/1.1" 200 None
+2018-09-03 16:32:05,361 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:32:05] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:32:05,361 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:32:05] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:34:09,174 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:34:09,174 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:34:09,319 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "GET /addresses?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:34:09,319 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "GET /addresses?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:34:09,322 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:34:09,322 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:34:09,542 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message HTTP/1.1" 200 None
+2018-09-03 16:34:09,542 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /goods2.html?goods_id=2723075938&page_from=0&share_uin=ZJZOSVZU6NLHPAJCLHXLBNVJ54_GEXDA&_wv=41729&_wvx=10&refer_share_id=1oKRTkcPdybPDQJE0rKgy7B85uMgVuT6&refer_share_uid=3636814957&refer_share_channel=message HTTP/1.1" 200 None
+2018-09-03 16:34:09,545 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:34:09,545 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): mobile.yangkeduo.com
+2018-09-03 16:34:09,738 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /order_checkout.html?sku_id=57068953297&group_id=4099812828&goods_id=2723075938&goods_number=2 HTTP/1.1" 200 None
+2018-09-03 16:34:09,738 - connectionpool.py:395 - urllib3.connectionpool - https://mobile.yangkeduo.com:443 "GET /order_checkout.html?sku_id=57068953297&group_id=4099812828&goods_id=2723075938&goods_number=2 HTTP/1.1" 200 None
+2018-09-03 16:34:10,184 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:34:10,184 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:34:10,361 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:34:10,361 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:34:10,365 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:34:10,365 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): api.pinduoduo.com
+2018-09-03 16:34:10,674 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order/prepay?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:34:10,674 - connectionpool.py:395 - urllib3.connectionpool - https://api.pinduoduo.com:443 "POST /order/prepay?pdduid=15179833772 HTTP/1.1" 200 None
+2018-09-03 16:34:10,677 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): wx.tenpay.com
+2018-09-03 16:34:10,677 - connectionpool.py:818 - urllib3.connectionpool - Starting new HTTPS connection (1): wx.tenpay.com
+2018-09-03 16:34:10,813 - connectionpool.py:395 - urllib3.connectionpool - https://wx.tenpay.com:443 "GET /cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx031634099921120159c7235a0699677453&package=1724332066 HTTP/1.1" 200 None
+2018-09-03 16:34:10,813 - connectionpool.py:395 - urllib3.connectionpool - https://wx.tenpay.com:443 "GET /cgi-bin/mmpayweb-bin/checkmweb?prepay_id=wx031634099921120159c7235a0699677453&package=1724332066 HTTP/1.1" 200 None
+2018-09-03 16:34:11,023 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:34:11] "POST /api/pay HTTP/1.1" 200 -
+2018-09-03 16:34:11,023 - _internal.py:88 - werkzeug - 192.168.1.165 - - [03/Sep/2018 16:34:11] "POST /api/pay HTTP/1.1" 200 -

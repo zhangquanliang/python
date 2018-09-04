@@ -4,15 +4,15 @@
     <option name="enabled" value="true" />
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../../../xlya/pinduoduo" />
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Django项目" />
     <orderEntry type="module" module-name="huarun" />
-    <orderEntry type="module" module-name="zhangql" />
     <orderEntry type="module" module-name="myblog" />
     <orderEntry type="module" module-name="zhangql" />
     <orderEntry type="module" module-name="mypdd" />
+    <orderEntry type="module" module-name="xlya" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

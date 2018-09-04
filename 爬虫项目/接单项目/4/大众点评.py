@@ -7,7 +7,9 @@ import re
 import time
 book = Workbook()
 sheet = book.create_sheet('大众点评')
-sheet.append(['省份', '城市', '区县', '门店名称', '地址', '电话', '人均消费', '点评数量', '产品点评打分', '环境点评打分', '服务点评打分'])
+sheet.append(['省份', '城市', '区县', '门店名称', '地址', '电话'])
+# sheet.append(['省份', '城市', '区县', '门店名称', '地址', '电话', '人均消费', '点评数量', '产品点评打分', '环境点评打分', '服务点评打分'])
+
 from bs4 import BeautifulSoup
 headers = {
         "Cookie": "_lxsdk_cuid=163edb15be0c8-0b969493143529-4d015463-100200-163edb15be175; _lxsdk=163edb15be0c8-0b969493143529-4d015463-100200-163edb15be175; _hc.v=4b1412ae-fe14-90f4-a9a5-5df95a27fa6b.1528701214; Hm_lvt_4c4fc10949f0d691f3a2cc4ca5065397=1528701273; cy=7; cye=shenzhen; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; s_ViewType=10; _lxsdk_s=164d9b926d6-026-5fc-2d9%7C%7C99",
@@ -72,6 +74,7 @@ def get_shop_url(url):
                 page_url = 0
             print(area_name, '当前地址 ', area_url, '下一页地址', page_url)
             get_detail_url(area_url)    # 传入每一页的地址
+            break
             if page_url:
                 get_next_page(page_url)
     else:
@@ -103,52 +106,53 @@ def parse_detail(html):
         area2 = soup.find('div', class_='breadcrumb').find_all('a')[-1].get_text()
     except:
         area2 = ''
-    area = area1 + ' ' + area2  # 区县
+    area = area1 + '' + area2  # 区县
     try:
         title = soup.find('div', class_='breadcrumb').find('span').get_text()  # 门店名称
     except:
         title = '-'
     try:
-        address = re.findall('shopName: ".*?", address: "(.*?)", publicTransit: "",', str(html), re.I | re.S)[0]
+        address = re.findall('shopName: ".*?", address: "(.*?)", publicTransit: ".*?",', str(html), re.I | re.S)[0]
     except:
         address = '-'
     try:
         phone = soup.find('p', class_='expand-info tel').get_text().replace('电话：', '').replace('添加', '')  # 电话
     except:
         phone = ''
-    try:
-        avgPriceTitle = soup.find('span', id='avgPriceTitle').get_text().replace('消费:', '')  # 消费
-    except:
-        avgPriceTitle = 15
-    try:
-        reviewCount = soup.find('span', id='reviewCount').get_text().replace('条评论', '')  # 评论
-    except:
-        reviewCount = 7
-    try:
-        product_scoring = \
-        re.findall('<span class=".*">产品:(.*?)</span>', str(soup.find('span', id='comment_score')), re.S | re.I)[0]
-    except:
-        product_scoring = 7.2
-    try:
-        environmental_scoring = \
-        re.findall('<span class=".*">环境:(.*?)</span>', str(soup.find('span', id='comment_score')), re.S | re.I)[0]
-    except:
-        environmental_scoring = 7.2
-    try:
-        service_scoring = \
-        re.findall('<span class=".*">服务:(.*?)</span>', str(soup.find('span', id='comment_score')), re.S | re.I)[0]
-    except:
-        service_scoring = 7.2
-    print('采集到的数据为: ', area, title, address, phone, avgPriceTitle, reviewCount, product_scoring, environmental_scoring,
-          service_scoring)
+    # try:
+    #     avgPriceTitle = soup.find('span', id='avgPriceTitle').get_text().replace('消费:', '')  # 消费
+    # except:
+    #     avgPriceTitle = 15
+    # try:
+    #     reviewCount = soup.find('span', id='reviewCount').get_text().replace('条评论', '')  # 评论
+    # except:
+    #     reviewCount = 7
+    # try:
+    #     product_scoring = \
+    #     re.findall('<span class=".*">产品:(.*?)</span>', str(soup.find('span', id='comment_score')), re.S | re.I)[0]
+    # except:
+    #     product_scoring = 7.2
+    # try:
+    #     environmental_scoring = \
+    #     re.findall('<span class=".*">环境:(.*?)</span>', str(soup.find('span', id='comment_score')), re.S | re.I)[0]
+    # except:
+    #     environmental_scoring = 7.2
+    # try:
+    #     service_scoring = \
+    #     re.findall('<span class=".*">服务:(.*?)</span>', str(soup.find('span', id='comment_score')), re.S | re.I)[0]
+    # except:
+    #     service_scoring = 7.2
+    # print('采集到的数据为: ', area, title, address, phone, avgPriceTitle, reviewCount, product_scoring, environmental_scoring,
+    #       service_scoring)
+    print('采集到的数据为: ', area, title, address, phone)
     sheet.append(
-        ['浙江', '嘉兴', area, title, address, phone, avgPriceTitle, reviewCount, product_scoring, environmental_scoring,
-         service_scoring])
+        ['上海', '上海', area, title, address, phone])
 
 
 if __name__ == '__main__':
-    url = 'https://www.dianping.com/search/keyword/102/0_全家便利店'
+    url = 'https://www.dianping.com/search/keyword/1/0_宠物店'
     get_shop_url(url)
     for shop_url in shop_url_list:
         get_detail(shop_url)
-    book.save('大众点评-嘉兴1.xlsx')
+        break
+    book.save('大众点评-上海.xlsx')
