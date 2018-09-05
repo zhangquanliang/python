@@ -12,7 +12,7 @@ sheet.append(['省份', '城市', '区县', '门店名称', '地址', '电话'])
 
 from bs4 import BeautifulSoup
 headers = {
-        "Cookie": "_lxsdk_cuid=163edb15be0c8-0b969493143529-4d015463-100200-163edb15be175; _lxsdk=163edb15be0c8-0b969493143529-4d015463-100200-163edb15be175; _hc.v=4b1412ae-fe14-90f4-a9a5-5df95a27fa6b.1528701214; Hm_lvt_4c4fc10949f0d691f3a2cc4ca5065397=1528701273; cy=7; cye=shenzhen; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; s_ViewType=10; _lxsdk_s=164d9b926d6-026-5fc-2d9%7C%7C99",
+        "Cookie": "_lxsdk_cuid=165a247080a1f-09689588478247-4d015463-100200-165a247080bc8; _lxsdk=165a247080a1f-09689588478247-4d015463-100200-165a247080bc8; _hc.v=e72e528f-b7d0-9ce3-dc0f-16faef8953e8.1536025889; _thirdu.c=4e5d8a2390b183e2af2d7078c3301460; thirdtoken=68B69EB069519FA1E2C823DCF3BD4480; JSESSIONID=F3061A01570DF13E8DB31C4F7204FE87; _dp.ac.v=a1c149c2-0d8e-441c-a99d-fae9de5168e8; dper=457595f486de7fd607d63b70b8ba27b299a50057c1d33b9b242fdaca292799bfc06c3caf1fdbd9f66ed7b39037df6dcbb04a8045c23525f062c14320a2173f0d179f4f257f13115c50b396b76503c2bb17bf4df7670dbf86864540da47e2ef7c; ll=7fd06e815b796be3df069dec7836c3df; ua=dpuser_3935931626; ctu=cb90e491e3f15f0564c9497c7f499eb860e504abdc60cc1034c7f996d690aea7; uamo=15179833772; s_ViewType=10; wed_user_path=27809|0; aburl=1; cy=1; cye=shanghai; _lx_utm=utm_source%3DBaidu%26utm_medium%3Dorganic; __utma=1.327481792.1536156599.1536156599.1536156599.1; __utmb=1.3.10.1536156599; __utmc=1; __utmz=1.1536156599.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); _lxsdk_s=165aa0f27b8-26f-805-039%7C%7C269",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
         "Accept-Encoding": "gzip, deflate, sdch",
         "Accept-Language": "zh-CN,zh;q=0.8",
@@ -150,7 +150,7 @@ def parse_detail(html):
 
 
 if __name__ == '__main__':
-    url = 'https://www.dianping.com/search/keyword/1/0_宠物店'
+    url = 'https://www.dianping.com/search/keyword/1/0_英式'
     get_shop_url(url)
     for shop_url in shop_url_list:
         get_detail(shop_url)
