@@ -7,8 +7,10 @@ import re
 import time
 book = Workbook()
 sheet = book.create_sheet('大众点评')
-sheet.append(['省份', '城市', '区县', '门店名称', '地址', '电话'])
+sheet.append(['省份', '城市', '区县', '门店名称', '地址', '总评论数', '店铺星级', '评论'])
 # sheet.append(['省份', '城市', '区县', '门店名称', '地址', '电话', '人均消费', '点评数量', '产品点评打分', '环境点评打分', '服务点评打分'])
+result = ''
+
 
 from bs4 import BeautifulSoup
 headers = {
@@ -36,7 +38,6 @@ def get_detail_url(page_url):
             detal_url = shop_.find('a')['href'].replace('/review', '')
             if detal_url in shop_url_list:
                 continue
-            print(page_url, detal_url)
             shop_url_list.append(detal_url)
     else:
         print('请求异常，请确认响应地址[{}]'.format(page_url))
@@ -48,12 +49,12 @@ def get_detail(url):
     for i in range(3):
         html = requests.get(url, headers=headers).text
         if '验证中心' in html:
-            time.sleep(40)
             print('需要输入验证码，请40秒内点击，然后重试。')
+            time.sleep(10)
             continue
         else:
             break
-    parse_detail(html)  # 传入需要解析的详情页面
+    parse_detail(url, html)  # 传入需要解析的详情页面
 
 
 # 传入一个初始地址，获取到下一页的地址
@@ -74,7 +75,6 @@ def get_shop_url(url):
                 page_url = 0
             print(area_name, '当前地址 ', area_url, '下一页地址', page_url)
             get_detail_url(area_url)    # 传入每一页的地址
-            break
             if page_url:
                 get_next_page(page_url)
     else:
@@ -94,31 +94,64 @@ def get_next_page(page_url):
     if next_url:
         get_next_page(next_url)
 
+# 获取评论
+def get_comment(url, comment_url):
+    global result
+    headers['referer'] = url
+    response = requests.get(comment_url, headers=headers)
+    print(response.text)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    reviews_list  = soup.find_all('div', class_='main-review')
+    if len(reviews_list) == 0:
+        return ''
+    for reviews_ in reviews_list:
+        name = reviews_.find('a', class_='name').get_text().replace('\n', '').strip()
+        time = reviews_.find('span', class_='time').get_text().replace('\n', '').strip()
+        review_words = reviews_.find('div', class_='review-words').get_text().replace('\n', '').strip()
+        result += name + ' ' + time + ' '+ review_words + '\n'
+    try:
+        next_url = 'http://www.dianping.com' + soup.find('a', class_='NextPage')['href']
+    except:
+        next_url = 0
+    if next_url:
+        get_comment(url, next_url)
+    return result
 
 # 解析详情页面，写入Excel
-def parse_detail(html):
+def parse_detail(url, html):
     soup = BeautifulSoup(html, 'html.parser')
     try:
-        area1 = soup.find('div', class_='breadcrumb').find_all('a')[-2].get_text()
+        area = soup.find('div', class_='breadcrumb').get_text().replace('  >  ', '»')
     except:
-        area1 = ''
+        area = '-'
     try:
-        area2 = soup.find('div', class_='breadcrumb').find_all('a')[-1].get_text()
-    except:
-        area2 = ''
-    area = area1 + '' + area2  # 区县
-    try:
-        title = soup.find('div', class_='breadcrumb').find('span').get_text()  # 门店名称
+        title = soup.find('h1', class_='shop-title').get_text()  # 门店名称
     except:
         title = '-'
     try:
-        address = re.findall('shopName: ".*?", address: "(.*?)", publicTransit: ".*?",', str(html), re.I | re.S)[0]
+        address = soup.find('span', itemprop='street-address').get_text()
     except:
         address = '-'
     try:
-        phone = soup.find('p', class_='expand-info tel').get_text().replace('电话：', '').replace('添加', '')  # 电话
+        comment_count = soup.find('ul', class_='cmt-filter').get_text()
     except:
-        phone = ''
+        comment_count = 0
+    try:
+        status = soup.find('span', itemprop='rating').get_text().replace('\n', '').strip()
+    except:
+        status = 0
+    comment_url = url + '/review_all'
+    global result
+    result = ''
+    # print('拼发球', comment_count)
+    # if comment_count != 0:
+    comment_list = get_comment(url, comment_url)
+    # else:
+    #     comment_list = ''
+    # try:
+    #     phone = soup.find('p', class_='expand-info tel').get_text().replace('电话：', '').replace('添加', '')  # 电话
+    # except:
+    #     phone = ''
     # try:
     #     avgPriceTitle = soup.find('span', id='avgPriceTitle').get_text().replace('消费:', '')  # 消费
     # except:
@@ -144,15 +177,16 @@ def parse_detail(html):
     #     service_scoring = 7.2
     # print('采集到的数据为: ', area, title, address, phone, avgPriceTitle, reviewCount, product_scoring, environmental_scoring,
     #       service_scoring)
-    print('采集到的数据为: ', area, title, address, phone)
-    sheet.append(
-        ['上海', '上海', area, title, address, phone])
+    print('采集到的数据为: ', area, title, address, comment_count, status, comment_list)
+    sheet.append(['湖南', '长沙', area, title, address, comment_count, status, comment_list])
 
 
 if __name__ == '__main__':
-    url = 'https://www.dianping.com/search/keyword/1/0_英式'
-    get_shop_url(url)
-    for shop_url in shop_url_list:
-        get_detail(shop_url)
-        break
-    book.save('大众点评-上海.xlsx')
+    # sear_goods = ['yeehoo', '英氏', 'les', 'enphants']
+    # for goods in sear_goods:
+    #     url = 'https://www.dianping.com/search/keyword/344/0_{}'.format(goods)
+    #     get_shop_url(url)
+    # for shop_url in shop_url_list:
+    #     get_detail(shop_url)
+    # book.save('大众点评-长沙.xlsx')
+    get_detail('http://www.dianping.com/shop/66689745')
