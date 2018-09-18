@@ -23,7 +23,7 @@ class Orderdown(models.Model):
         return self.name
 
 
-class OrderwownSerializer(serializers.ModelSerializer):
+class OrderdownSerializer(serializers.ModelSerializer):
     class Meta:
         model = Orderdown
         fields = ('id', 'name', 'amount', 'token', 'goods_url', 'goods_number', 'orderno', 'notifyurl', 'sign',
@@ -36,16 +36,22 @@ class Order(models.Model):
     order_sn = models.CharField('订单编号', max_length=50, unique=True)
     amount = models.DecimalField('订单金额', max_digits=20, decimal_places=2)
     order_type = models.CharField('订单类型', max_length=50)
-    pay_url = models.CharField('付款链接', max_length=50)
+    pay_url = models.TextField('付款链接')
     status = models.CharField('订单状态', max_length=50)
     evalute = models.CharField('是否已评价', max_length=50, blank=True, null=True, default='否')
-    create_date = models.DateTimeField('创建日期')
+    create_date = models.DateTimeField('创建日期', auto_now_add=True)
     update_date = models.DateTimeField('更新日期', auto_now_add=True)
     class Meta:
         verbose_name = '我的订单'
         verbose_name_plural = verbose_name
     def __str__(self):
         return self.name
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ('id', 'name', 'orderno', 'order_sn', 'amount', 'order_type', 'pay_url', 'status', 'evalute')
+
 
 class Evaluate(models.Model):
     name = models.CharField('用户', max_length=50)
@@ -60,3 +66,8 @@ class Evaluate(models.Model):
         verbose_name_plural = verbose_name
     def __str__(self):
         return self.name
+
+class EvaluateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Evaluate
+        fields = ('id', 'name', 'goods_id', 'goods_url', 'order_sn', 'content', 'over')
