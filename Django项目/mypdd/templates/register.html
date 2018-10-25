@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<form action="{% url 'register' %}" method="post" accept-charset="utf-8"enctype="multipart/form-data" >
+   {% csrf_token %}
+   <input type="text" name="username" id="username" placeholder="请输入手机号" >
+   <input type="password"  name="password" id="password" placeholder="请输入6-12位密码" >
+   <input type="submit" class="submit" value="立即注册">
+ </form>
+</body>
+</html>

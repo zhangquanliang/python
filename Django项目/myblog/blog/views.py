@@ -3,14 +3,16 @@ from .models import *
 from .forms import CommentForm
 from django.http import Http404
 
+
 # Create your views here.
 def get_blogs(request):
     blogs = Blog.objects.all().order_by('-pub')  # 获取到所有的博客按时间倒序
-    return render_to_response('blog_list.html', context={'blogs': blogs})  # 传递context:blog参数到固定页面
+    return render_to_response('login.html', context={'blogs': blogs})  # 传递context:blog参数到固定页面
+
 
 def get_details(request, blog_id):
     try:
-        blog = Blog.objects.get(id=blog_id) # 获取固定的blog_id对象
+        blog = Blog.objects.get(id=blog_id)  # 获取固定的blog_id对象
     except Blog.DoesNotExist:
         raise Http404
 
@@ -26,5 +28,5 @@ def get_details(request, blog_id):
         'blog': blog,
         'comments': blog.comment_set.all().order_by('-pub'),
         'form': form
-    }   # 返回3个参数
-    return render(request, 'blog_details.html', context=ctx)
+    }  # 返回3个参数
+    return render(request, 'register.html', context=ctx)

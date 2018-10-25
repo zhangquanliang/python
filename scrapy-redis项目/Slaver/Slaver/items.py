@@ -10,6 +10,9 @@ import scrapy
 
 class SlaverItem(scrapy.Item):
     # define the fields for your item here like:
-    author = scrapy.Field()
-    novel_type = scrapy.Field()
+    chapter_url = scrapy.Field()    # 章节地址
+    novel_type = scrapy.Field()  # 小说类型
+    novel_name = scrapy.Field()  # 小说名字
+    chapter_name = scrapy.Field()   # 章节名字
+    context = scrapy.Field()    # 章节内容
     # pass

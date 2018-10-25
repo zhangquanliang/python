@@ -18,10 +18,14 @@ from django.contrib import admin
 from pdd import views
 
 urlpatterns = [
+    url(r'^/', views.Evaluate_list),
     url(r'^admin/', admin.site.urls),
     url(r'^api/orderdown/', views.Orderdown_list),
     url(r'^api/order/', views.Order_list),
     url(r'^api/evaluate/', views.Evaluate_list),
+    url(r'^register/', views.register_view, name='register'),
+    url(r'^login/', views.login_view, name='login'),
+    url(r'^logout/', views.logout_view),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^', include('snippets.urls')),
 ]

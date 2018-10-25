@@ -1,14 +1,10 @@
-# -*- coding:utf-8 -*-
-"""
-author = zhangql
-"""
-lst = ["'HONDA', 'Accord', '1993', '2003', 'CBHO-26', 'CC7/CE8,CE5,CE9...','Left/Right Lower              '"]
-a = lst[0].replace("'", '')
-d = a.split(',')
-c = d[-4:-1]
-x = str(c).replace('"', '').replace("'", '').replace('[', '').replace(']', '')
-d.remove('CE5')
-d.remove('CE9...')
-d.remove(' CC7/CE8')
-d.insert(-1, x)
-print(d)
+from requestium import Session, Keys
+import urllib3
+urllib3.disable_warnings()
+
+
+s = Session(webdriver_path=r'D:\git\zhangql\util_zql\chromedriver(zql).exe', browser='chrome')
+# a = s.get('http://www.baidu.com')
+# c = a.decode('gbk')
+a = s.request('get', 'http://www.baidu.com', verify=False)
+print(a.text)

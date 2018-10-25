@@ -54,7 +54,7 @@ class SGGZH:
 
     # 搜索入口地址，以公众为关键字搜索该公众号
     def get_search_result_by_keywords(self):
-        url = 'http://weixin.sogou.com/weixin?type=1&query=python&ie=utf8&_sug_=y'
+        url = 'http://weixin.sogou.com/weixin?type=1&s_from=input&query=python'
         response = self.r.get(url, headers=self.headers, timeout=self.timeout)
         return response.text
 

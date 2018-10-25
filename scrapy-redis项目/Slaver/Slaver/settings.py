@@ -14,6 +14,13 @@ BOT_NAME = 'Slaver'
 SPIDER_MODULES = ['Slaver.spiders']
 NEWSPIDER_MODULE = 'Slaver.spiders'
 
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+
+FEED_EXPORT_ENCODING = 'utf-8'
+
+
 REDIS_HOST = '120.55.48.59'
 
 REDIS_PORT = 6379

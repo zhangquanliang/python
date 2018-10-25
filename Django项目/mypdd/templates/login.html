@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<body>
+    <form action="{% url 'login' %}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+   {% csrf_token %}
+   <input type="text" name="username" id="username" placeholder="手机号码" >
+   <input type="password" name="password" id="password" placeholder="登陆密码" value="" >
+   <input type="submit" value="立即登录">
+ </form>
+</body>
+</html>

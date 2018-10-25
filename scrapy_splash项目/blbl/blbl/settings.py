@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for Maste project
+# Scrapy settings for blbl project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -8,22 +8,17 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+# TODO 添加splash服务器地址
+SPLASH_URL = 'http://192.168.99.100:8050/'
 
-BOT_NAME = 'Maste'
+BOT_NAME = 'blbl'
 
-SPIDER_MODULES = ['Maste.spiders']
-NEWSPIDER_MODULE = 'Maste.spiders'
+SPIDER_MODULES = ['blbl.spiders']
+NEWSPIDER_MODULE = 'blbl.spiders'
 
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-
-FEED_EXPORT_ENCODING = 'utf-8'
-
-SCHEDULER_PERSIST = True
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'Maste (+http://www.yourdomain.com)'
+#USER_AGENT = 'blbl (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -46,22 +41,35 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'en',
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0"
+}
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'Maste.middlewares.MasteSpiderMiddleware': 543,
-#}
+
+#TODO 在settings.py启用SplashDeduplicateArgsMiddleware中间件
+SPIDER_MIDDLEWARES = {
+   'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'Maste.middlewares.MasteDownloaderMiddleware': 543,
-#}
+
+# TODO 在你的下载器中间件：download_middleware 里面启用如下的中间文件，注意启用的顺序
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+
+# TODO 设置一个去重的类
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+
+# TODO 启用这个scrapy-splash的缓存系统
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -71,9 +79,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'Maste.pipelines.MastePipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'blbl.pipelines.BlblPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
